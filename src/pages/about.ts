@@ -106,6 +106,18 @@ const bookstore: Html = html`
           one book and leave with the one they didn't know they were
           looking for.
         </p>
+      </div>
+      <figure class="about-figure">
+        <img
+          src="/assets/dungeonbooks-shelves.jpg"
+          alt="Shelves of sci-fi and fantasy novels and RPG books inside Dungeon Books"
+          width="1500"
+          height="1000"
+          loading="lazy"
+        />
+        <figcaption>Inside the shop.</figcaption>
+      </figure>
+      <div class="col-span-text">
         <p>
           We run it a little differently than most indie shops. The
           business side gets treated like a small product: we look at
