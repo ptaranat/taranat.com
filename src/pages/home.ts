@@ -8,7 +8,7 @@ const hero: Html = html`
     <div class="grid">
       <div class="col-span-text">
         <h1 class="display">
-          Founding engineer for pre-seed to Series B.
+          Founding engineer for early-stage startups.
         </h1>
         <p class="lede">
           I embed with teams that shipped fast, accumulated debt, and now
