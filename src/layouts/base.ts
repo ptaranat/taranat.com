@@ -1,0 +1,110 @@
+import { html, type Html, raw } from '../lib/html.ts';
+import { emailLink } from '../lib/email.ts';
+
+type LayoutOpts = {
+  title: string;
+  description?: string;
+  path: string;
+  children: Html;
+};
+
+const nav = (current: string): Html => {
+  const items = [
+    { href: '/', label: 'Index' },
+    { href: '/about', label: 'About' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/meet', label: 'Meet' },
+    { href: '/resume', label: 'Resume' },
+  ];
+  return html`
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        ${items.map(
+          (item) => html`
+            <li>
+              <a
+                href="${item.href}"
+                ${item.href === current ? raw('aria-current="page"') : ''}
+              >${item.label}</a>
+            </li>
+          `,
+        )}
+        <li class="site-nav__theme">
+          <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Toggle color scheme"
+          ></button>
+        </li>
+      </ul>
+    </nav>
+  `;
+};
+
+const preBodyScript = raw(`
+(function(){
+  try {
+    var m = localStorage.getItem('user-color-scheme');
+    if (m === 'light' || m === 'dark') {
+      document.documentElement.setAttribute('data-user-color-scheme', m);
+    }
+  } catch (e) {}
+})();
+`);
+
+export const layout = ({ title, description, path, children }: LayoutOpts): Html => html`
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>${title}</title>
+    ${description ? html`<meta name="description" content="${description}" />` : ''}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap"
+    />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <script>${preBodyScript}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="grid">
+        <div class="site-masthead">
+          <a class="site-title" href="/">PANAT TARANAT</a>
+          <span class="site-subtitle">Founding Engineer</span>
+        </div>
+        <details class="site-nav-wrapper">
+          <summary class="site-nav-toggle" aria-label="Toggle menu"></summary>
+          ${nav(path)}
+        </details>
+        <script>${raw(`(function(){
+          var d = document.currentScript.previousElementSibling;
+          var mq = matchMedia('(min-width: 60rem)');
+          var sync = function(){ mq.matches ? d.setAttribute('open','') : d.removeAttribute('open'); };
+          sync();
+          mq.addEventListener('change', sync);
+        })();`)}</script>
+      </div>
+    </header>
+    <main id="main" class="site-main">
+      ${children}
+    </main>
+    <footer class="site-footer">
+      <div class="grid">
+        <div class="col">
+          <span>© ${String(new Date().getFullYear())} Panat Taranat</span>
+        </div>
+        <div class="col">
+          ${emailLink()}
+        </div>
+      </div>
+    </footer>
+    <script src="/js/theme.js" defer></script>
+    <script src="/js/email.js" defer></script>
+  </body>
+</html>
+`;

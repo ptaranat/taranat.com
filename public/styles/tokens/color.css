@@ -1,0 +1,77 @@
+:root {
+  color-scheme: light dark;
+
+  --paper: #f7f1e2;
+  --paper-sunk: #ede6d3;
+  --paper-raised: #fcf6ea;
+
+  --ink: #1a1613;
+  --ink-muted: #5a5249;
+  --ink-faint: #8a8174;
+
+  --rule: #d4cab5;
+  --rule-strong: #b8ac93;
+
+  --accent: #bf5700;
+  --accent-hover: #994400;
+  --accent-ink: #ffffff;
+
+  --selection: #f1cfa2;
+
+  --noise: url('/assets/noise-light.svg');
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14110e;
+    --paper-sunk: #0c0a08;
+    --paper-raised: #1c1815;
+
+    --ink: #ede4d0;
+    --ink-muted: #9c9280;
+    --ink-faint: #5d564a;
+
+    --rule: #2d2821;
+    --rule-strong: #3d362c;
+
+    --accent: #e08339;
+    --accent-hover: #ec9857;
+    --accent-ink: #14110e;
+
+    --selection: #4a2c14;
+
+    --noise: url('/assets/noise-dark.svg');
+  }
+}
+
+[data-user-color-scheme='light'] {
+  --paper: #f7f1e2;
+  --paper-sunk: #ede6d3;
+  --paper-raised: #fcf6ea;
+  --ink: #1a1613;
+  --ink-muted: #5a5249;
+  --ink-faint: #8a8174;
+  --rule: #d4cab5;
+  --rule-strong: #b8ac93;
+  --accent: #bf5700;
+  --accent-hover: #994400;
+  --accent-ink: #ffffff;
+  --selection: #f1cfa2;
+  --noise: url('/assets/noise-light.svg');
+}
+
+[data-user-color-scheme='dark'] {
+  --paper: #14110e;
+  --paper-sunk: #0c0a08;
+  --paper-raised: #1c1815;
+  --ink: #ede4d0;
+  --ink-muted: #9c9280;
+  --ink-faint: #5d564a;
+  --rule: #2d2821;
+  --rule-strong: #3d362c;
+  --accent: #e08339;
+  --accent-hover: #ec9857;
+  --accent-ink: #14110e;
+  --selection: #4a2c14;
+  --noise: url('/assets/noise-dark.svg');
+}

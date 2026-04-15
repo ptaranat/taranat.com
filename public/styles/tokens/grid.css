@@ -1,0 +1,59 @@
+:root {
+  --num-cols: 4;
+  --gutter: 1rem;
+  --page-pad: 1.25rem;
+  --measure: 64ch;
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --num-cols: 8;
+    --gutter: 1.25rem;
+    --page-pad: 2rem;
+  }
+}
+
+@media (min-width: 60rem) {
+  :root {
+    --num-cols: 12;
+    --gutter: 1.5rem;
+    --page-pad: 3rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  :root {
+    --num-cols: 12;
+    --gutter: 1.75rem;
+    --page-pad: 4rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--num-cols, 1), 1fr);
+  column-gap: var(--gutter);
+  row-gap: var(--gutter);
+  padding-inline: var(--page-pad);
+  max-width: 90rem;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.col-span-full {
+  grid-column: 1 / -1;
+}
+
+.col-span-text {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 60rem) {
+  .col-span-text {
+    grid-column: 2 / span 8;
+  }
+
+  .col-span-wide {
+    grid-column: 2 / span 10;
+  }
+}
