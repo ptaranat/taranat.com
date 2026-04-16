@@ -136,14 +136,14 @@
   transition: color 120ms ease;
 }
 
-#theme-toggle::before { content: 'DAY'; }
+#theme-toggle::before { content: 'NIGHT'; }
 
 @media (prefers-color-scheme: dark) {
-  #theme-toggle::before { content: 'NIGHT'; }
+  #theme-toggle::before { content: 'DAY'; }
 }
 
-[data-user-color-scheme='light'] #theme-toggle::before { content: 'DAY'; }
-[data-user-color-scheme='dark'] #theme-toggle::before { content: 'NIGHT'; }
+[data-user-color-scheme='light'] #theme-toggle::before { content: 'NIGHT'; }
+[data-user-color-scheme='dark'] #theme-toggle::before { content: 'DAY'; }
 
 #theme-toggle:hover {
   color: var(--accent);
