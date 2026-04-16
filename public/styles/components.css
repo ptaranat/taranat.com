@@ -50,6 +50,8 @@
   color: var(--ink);
   user-select: none;
   transition: color 120ms ease;
+  position: relative;
+  z-index: 6;
 }
 
 .site-nav-toggle::-webkit-details-marker { display: none; }
