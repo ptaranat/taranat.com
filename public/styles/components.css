@@ -1,9 +1,13 @@
 /* Site chrome ------------------------------------------------------------ */
 
 .site-header {
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--chrome-rule);
   padding-block: 0.625rem;
-  background: var(--paper);
+  background-color: var(--chrome-bg);
+  background-image: var(--chrome-noise);
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  color: var(--chrome-ink);
   position: relative;
 }
 
@@ -35,7 +39,8 @@
 
 .site-subtitle {
   font-size: var(--fs-small);
-  color: var(--ink-muted);
+  color: var(--chrome-ink);
+  opacity: 0.5;
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
 }
@@ -47,7 +52,7 @@
   font-size: var(--fs-small);
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--chrome-ink);
   user-select: none;
   transition: color 120ms ease;
   position: relative;
@@ -57,7 +62,7 @@
 .site-nav-toggle::-webkit-details-marker { display: none; }
 .site-nav-toggle::before { content: 'MENU'; }
 .site-nav-wrapper[open] .site-nav-toggle::before { content: 'CLOSE'; }
-.site-nav-toggle:hover { color: var(--accent); }
+.site-nav-toggle:hover { color: var(--chrome-accent); }
 
 .site-nav-wrapper > .site-nav { display: none; }
 
@@ -67,8 +72,8 @@
   left: 0;
   right: 0;
   top: 100%;
-  background: var(--paper);
-  border-bottom: 1px solid var(--rule);
+  background: var(--chrome-bg);
+  border-bottom: 1px solid var(--chrome-rule);
   padding: 1rem var(--page-pad) 1.25rem;
   z-index: 5;
 }
@@ -90,6 +95,7 @@
 
 .site-nav a:hover,
 .site-nav a[aria-current='page'] {
+  color: var(--chrome-accent);
   text-decoration: underline;
   text-underline-offset: 0.3em;
 }
@@ -99,8 +105,6 @@
     padding-block: 1rem;
     position: sticky;
     top: 0;
-    background: color-mix(in oklab, var(--paper) 92%, transparent);
-    backdrop-filter: saturate(1.1) blur(6px);
     z-index: 10;
   }
   .site-header .grid { row-gap: 0.5rem; }
@@ -146,7 +150,7 @@
 [data-user-color-scheme='dark'] #theme-toggle::before { content: 'DAY'; }
 
 #theme-toggle:hover {
-  color: var(--accent);
+  color: var(--chrome-accent);
   text-decoration: underline;
   text-underline-offset: 0.3em;
 }
@@ -156,11 +160,24 @@
 }
 
 .site-footer {
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--chrome-rule);
   padding-block: 1.5rem;
   margin-top: 4rem;
-  color: var(--ink-muted);
+  background-color: var(--chrome-bg);
+  background-image: var(--chrome-noise);
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  color: var(--chrome-ink-muted);
   font-size: var(--fs-small);
+}
+
+.site-footer a {
+  text-decoration-color: var(--chrome-rule);
+}
+
+.site-footer a:hover {
+  color: var(--chrome-accent);
+  text-decoration-color: var(--chrome-accent);
 }
 
 .site-footer .grid {
@@ -180,11 +197,6 @@
 
 .section {
   padding-block: clamp(2rem, 5vw, 4rem);
-  border-bottom: 1px dashed var(--rule);
-}
-
-.section:last-of-type {
-  border-bottom: 0;
 }
 
 .section-header {
@@ -288,11 +300,11 @@
   grid-template-columns: 1fr;
   gap: 0.5rem;
   padding-block: 1.25rem;
-  border-top: 1px solid var(--rule);
+  border-top: 2px solid var(--rule);
 }
 
 .engagement:last-child {
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 2px solid var(--rule);
 }
 
 @media (min-width: 48rem) {
@@ -337,7 +349,6 @@
 }
 
 .engagement-outcome {
-  font-family: var(--font-serif);
   font-size: 1rem;
   line-height: 1.55;
   color: var(--ink);
@@ -359,7 +370,6 @@
 }
 
 .availability-body > p {
-  font-family: var(--font-serif);
   font-size: var(--fs-lede);
   line-height: 1.55;
   max-width: 48ch;
@@ -380,13 +390,17 @@
 
 /* About page ------------------------------------------------------------- */
 
+.section--about-hero + .section .col-span-text p + p {
+  margin-top: 0.25em;
+}
+
 .section--about-hero .grid {
   row-gap: 2rem;
   align-items: start;
 }
 
 .section--about-hero .lede {
-  font-family: var(--font-mono);
+  font-family: var(--font-serif);
 }
 
 .about-hero__text {
@@ -396,6 +410,7 @@
 .about-hero__photo {
   grid-column: 1 / -1;
   margin: 0;
+  order: -1;
 }
 
 .about-hero__photo img {
@@ -407,9 +422,9 @@
 }
 
 @media (min-width: 60rem) {
-  .about-hero__text { grid-column: 1 / span 7; }
-  .about-hero__photo { grid-column: 9 / -1; }
+  .about-hero__photo { grid-column: 1 / span 3; grid-row: 1; }
   .about-hero__photo img { max-width: 100%; }
+  .about-hero__text { grid-column: 5 / -1; grid-row: 1; }
 }
 
 .about-figure {

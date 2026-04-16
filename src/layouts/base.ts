@@ -64,7 +64,7 @@ export const layout = ({ title, description, path, children }: LayoutOpts): Html
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap"
     />
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -73,7 +73,7 @@ export const layout = ({ title, description, path, children }: LayoutOpts): Html
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
-    <meta name="theme-color" content="#f7f1e2" />
+    <meta name="theme-color" content="#14110e" />
     <script>${preBodyScript}</script>
   </head>
   <body>

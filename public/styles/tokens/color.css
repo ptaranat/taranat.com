@@ -19,6 +19,14 @@
   --selection: #f1cfa2;
 
   --noise: url('/assets/noise-light.svg');
+
+  --chrome-bg: #14110e;
+  --chrome-ink: #ede4d0;
+  --chrome-ink-muted: #9c9280;
+  --chrome-rule: #2d2821;
+  --chrome-accent: #e08339;
+  --chrome-accent-hover: #ec9857;
+  --chrome-noise: url('/assets/noise-dark.svg');
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,6 +49,14 @@
     --selection: #4a2c14;
 
     --noise: url('/assets/noise-dark.svg');
+
+    --chrome-bg: #14110e;
+    --chrome-ink: #ede4d0;
+    --chrome-ink-muted: #9c9280;
+    --chrome-rule: #2d2821;
+    --chrome-accent: #e08339;
+    --chrome-accent-hover: #ec9857;
+    --chrome-noise: url('/assets/noise-dark.svg');
   }
 }
 
@@ -58,6 +74,13 @@
   --accent-ink: #ffffff;
   --selection: #f1cfa2;
   --noise: url('/assets/noise-light.svg');
+  --chrome-bg: #14110e;
+  --chrome-ink: #ede4d0;
+  --chrome-ink-muted: #9c9280;
+  --chrome-rule: #2d2821;
+  --chrome-accent: #e08339;
+  --chrome-accent-hover: #ec9857;
+  --chrome-noise: url('/assets/noise-dark.svg');
 }
 
 [data-user-color-scheme='dark'] {
@@ -74,4 +97,11 @@
   --accent-ink: #14110e;
   --selection: #4a2c14;
   --noise: url('/assets/noise-dark.svg');
+  --chrome-bg: #14110e;
+  --chrome-ink: #ede4d0;
+  --chrome-ink-muted: #9c9280;
+  --chrome-rule: #2d2821;
+  --chrome-accent: #e08339;
+  --chrome-accent-hover: #ec9857;
+  --chrome-noise: url('/assets/noise-dark.svg');
 }

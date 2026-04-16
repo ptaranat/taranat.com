@@ -35,6 +35,8 @@ body {
 p {
   margin: 0 0 1.15em;
   max-width: var(--measure);
+  font-family: var(--font-serif);
+  line-height: 1.55;
 }
 
 p:last-child {
@@ -59,6 +61,15 @@ a {
 a:hover {
   color: var(--accent);
   text-decoration-color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip:focus {
+  outline: none;
 }
 
 a[aria-current='page'] {

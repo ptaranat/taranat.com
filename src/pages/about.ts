@@ -8,7 +8,7 @@ const hero: Html = html`
         <h1 class="display">About</h1>
         <p class="lede">
           I'm a founding engineer based in Jersey City. In 2024 I opened
-          Dungeon Books, a sci-fi/fantasy/RPG bookstore and community space.
+          Dungeon Books, a sci-fi/fantasy bookstore and community space.
         </p>
       </div>
       <figure class="about-hero__photo">
@@ -91,7 +91,7 @@ const bookstore: Html = html`
           Carrie and I met across a D&D table. A few sessions in, we were
           sketching what eventually became
           <a href="https://dungeonbooks.com" rel="noreferrer">Dungeon Books</a>,
-          a sci-fi/fantasy/RPG bookstore that we opened in Jersey City in
+          a sci-fi/fantasy bookstore that we opened in Jersey City in
           2024. Carrie came from a career in bookselling; I came in with a
           background in software and a personal collection that had been
           slowly taking over my apartment.
