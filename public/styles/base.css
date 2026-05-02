@@ -22,6 +22,7 @@ body {
   color: var(--ink);
   font-family: var(--font-mono);
   font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
   line-height: var(--lh-body);
   font-feature-settings: 'ss01', 'zero';
   text-rendering: optimizeLegibility;
@@ -46,7 +47,7 @@ p {
   margin: 0 0 1.15em;
   max-width: var(--measure);
   font-family: var(--font-serif);
-  line-height: 1.55;
+  line-height: 1.7;
 }
 
 p:last-child {
