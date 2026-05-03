@@ -18,15 +18,7 @@ export const blogPage = (): Html => {
     description: 'Writing by Panat Taranat.',
     path: '/blog',
     children: html`
-      <section class="section section--index">
-        <div class="grid">
-          <header class="col-span-text index-header">
-            <p class="eyebrow">
-              Index — ${String(count)} ${count === 1 ? 'entry' : 'entries'}
-            </p>
-            <h1 class="display">Blog</h1>
-          </header>
-        </div>
+      <section class="section section--index" aria-label="Blog">
         ${count === 0
           ? html`
               <div class="grid">
@@ -35,19 +27,19 @@ export const blogPage = (): Html => {
             `
           : html`
               <div class="grid">
-                <ul class="col-span-text post-index">
+                <ul class="col-span-full post-index">
                   ${posts.map(
                     (p) => html`
                       <li class="post-index__entry">
-                        <a class="post-index__link" href="/blog/${p.slug}">
-                          <time class="post-index__date" datetime="${p.date}">
-                            ${formatIndexDate(p.date)}
-                          </time>
-                          <div class="post-index__body">
-                            <h2 class="post-index__title">${p.title}</h2>
-                            <div class="post-index__excerpt">${p.excerpt}</div>
-                          </div>
-                        </a>
+                        <time class="post-index__date" datetime="${p.date}">
+                          ${formatIndexDate(p.date)}
+                        </time>
+                        <div class="post-index__body">
+                          <h2 class="post-index__title">
+                            <a class="post-index__link" href="/blog/${p.slug}">${p.title}</a>
+                          </h2>
+                          <div class="post-index__excerpt">${p.excerpt}</div>
+                        </div>
                       </li>
                     `,
                   )}

@@ -483,14 +483,6 @@
 
 /* Blog index ------------------------------------------------------------ */
 
-.section--index .index-header {
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-.section--index .index-header .eyebrow {
-  margin-bottom: 1.25rem;
-}
-
 .post-index {
   list-style: none;
   padding: 0;
@@ -501,21 +493,17 @@
 }
 
 .post-index__entry {
-  margin: 0;
-}
-
-.post-index__link {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.75rem;
-  text-decoration: none;
-  color: inherit;
+  gap: 0.5rem;
+  position: relative;
 }
 
-@media (min-width: 50rem) {
-  .post-index__link {
-    grid-template-columns: 8.5rem 1fr;
-    gap: 2.25rem;
+@media (min-width: 60rem) {
+  .post-index__entry {
+    grid-template-columns: repeat(var(--num-cols), 1fr);
+    column-gap: var(--gutter);
+    row-gap: 0;
     align-items: baseline;
   }
 }
@@ -527,22 +515,43 @@
   color: var(--ink-muted);
   font-feature-settings: 'tnum';
   white-space: nowrap;
-  padding-top: 0.45em;
+  margin: 0;
+}
+
+@media (min-width: 60rem) {
+  .post-index__date {
+    grid-column: 1 / span 1;
+    align-self: start;
+    padding-top: 0.7em;
+  }
+
+  .post-index__body {
+    grid-column: 2 / span 8;
+  }
 }
 
 .post-index__title {
-  font-family: var(--font-serif);
   font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2rem);
   font-weight: var(--fw-medium);
-  line-height: 1.18;
-  letter-spacing: -0.005em;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-title);
   margin: 0 0 0.5rem;
-  max-width: 28ch;
+  max-width: 32ch;
+}
+
+.post-index__link {
   text-decoration-line: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
+  color: inherit;
   transition: text-decoration-color 160ms ease, color 160ms ease;
+}
+
+.post-index__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 .post-index__excerpt {
@@ -563,13 +572,13 @@
   margin-top: 0.8em;
 }
 
-.post-index__link:hover .post-index__title,
-.post-index__link:focus-visible .post-index__title {
+.post-index__link:hover,
+.post-index__link:focus-visible {
   text-decoration-color: var(--ink);
 }
 
-.post-index__link:hover .post-index__date,
-.post-index__link:focus-visible .post-index__date {
+.post-index__entry:hover .post-index__date,
+.post-index__entry:focus-within .post-index__date {
   color: var(--ink);
 }
 
