@@ -7,8 +7,8 @@ const hero: Html = html`
       <div class="about-hero__text">
         <h1 class="display">About</h1>
         <p class="lede">
-          I'm a founding engineer based in Jersey City. In 2024 I opened
-          Dungeon Books, a sci-fi/fantasy bookstore and community space.
+          I'm a software engineer based in Jersey City. In 2024 I opened
+          Dungeon Books, a sci-fi and fantasy bookstore.
         </p>
       </div>
       <figure class="about-hero__photo">
@@ -69,7 +69,7 @@ const pivots: Html = html`
           After grad school I pivoted once more, from hardware to cloud
           and distributed systems. At RapDev I built observability tooling
           for Fortune 500 companies. At Rokt I shipped distributed systems
-          powering millions of upsells. These days I'm consulting.
+          powering millions of upsells.
         </p>
         <p>
           If there's a through-line, it's the space between layers of
@@ -91,7 +91,7 @@ const bookstore: Html = html`
           Carrie and I met across a D&D table. A few sessions in, we were
           sketching what eventually became
           <a href="https://dungeonbooks.com" rel="noreferrer">Dungeon Books</a>,
-          a sci-fi/fantasy bookstore that we opened in Jersey City in
+          a sci-fi and fantasy bookstore we opened in Jersey City in
           2024. Carrie came from a career in bookselling; I came in with a
           background in software and a personal collection that had been
           slowly taking over my apartment.
@@ -135,8 +135,8 @@ const bookstore: Html = html`
           Outside the shop, I teach AI and technology workshops at the
           Jersey City Free Public Library and give occasional presentations
           on technology and tabletop games at Liberty Science Center. Most
-          of my consulting income goes back into the store and the programs
-          we run around it.
+          of what I earn goes back into the store and the programs we run
+          around it.
         </p>
         <p class="about-press">
           <span class="about-press__label">Press:</span>
@@ -178,7 +178,7 @@ export const aboutPage = (): Html =>
   layout({
     title: 'About — Panat Taranat',
     description:
-      'Founding engineer, co-owner of Dungeon Books, and occasional workshop teacher in Jersey City.',
+      'Software engineer, co-owner of Dungeon Books, and occasional workshop teacher in Jersey City.',
     path: '/about',
     children: html`${hero}${journey}${pivots}${bookstore}${elsewhere}`,
   });

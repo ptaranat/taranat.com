@@ -5,7 +5,6 @@ import { aboutPage } from './pages/about.ts';
 import { blogPage } from './pages/blog.ts';
 import { blogPostPage } from './pages/blog-post.ts';
 import { meetPage } from './pages/meet.ts';
-import { resumeEnabled, resumePage } from './pages/resume.ts';
 import { notFoundPage } from './pages/not-found.ts';
 import { htmlResponse } from './lib/html.ts';
 import { getPost } from './lib/posts.ts';
@@ -21,10 +20,6 @@ const app = new Elysia()
     return htmlResponse(blogPostPage(post));
   })
   .get('/meet', () => htmlResponse(meetPage()));
-
-if (resumeEnabled) {
-  app.get('/resume', () => htmlResponse(resumePage()));
-}
 
 app.onError(({ code }) => {
   if (code === 'NOT_FOUND') {

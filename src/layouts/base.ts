@@ -16,7 +16,6 @@ const nav = (current: string): Html => {
     { href: '/about', label: 'About' },
     { href: '/blog', label: 'Blog' },
     { href: '/meet', label: 'Meet' },
-    { href: '/resume', label: 'Resume' },
   ];
   return html`
     <nav class="site-nav" aria-label="Primary">
@@ -84,7 +83,7 @@ export const layout = ({ title, description, path, children }: LayoutOpts): Html
       <div class="grid">
         <div class="site-masthead">
           <a class="site-title" href="/">PANAT TARANAT</a>
-          <span class="site-subtitle">Founding Engineer &amp; Bookstore Owner</span>
+          <span class="site-subtitle">Software Engineer &amp; Bookstore Owner</span>
         </div>
         <details class="site-nav-wrapper">
           <summary class="site-nav-toggle" aria-label="Toggle menu"></summary>

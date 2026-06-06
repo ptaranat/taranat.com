@@ -1,6 +1,5 @@
 import { html, type Html } from '../lib/html.ts';
 import { layout } from '../layouts/base.ts';
-import { engagements } from '../data/engagements.ts';
 import { emailLink } from '../lib/email.ts';
 
 const hero: Html = html`
@@ -8,44 +7,18 @@ const hero: Html = html`
     <div class="grid">
       <div class="col-span-text">
         <h1 class="display">
-          Founding engineer for early-stage startups.
+          I left tech to open a bookstore.
         </h1>
         <p class="lede">
-          I embed with teams that shipped fast, accumulated debt, and now
-          need someone to make the stack scale without slowing them down. I
-          clear the critical path, set up the infrastructure, and help hire
-          the engineers who take it from there.
+          In 2024, Carrie and I opened
+          <a href="https://dungeonbooks.com" rel="noreferrer">Dungeon Books</a>,
+          a sci-fi and fantasy shop in Jersey City. I'd spent years building
+          distributed systems and infrastructure, and I wanted to make
+          something I could stand inside of. So we did. These days you'll
+          find me at the shop, recommending books and running D&amp;D nights
+          in the back.
         </p>
       </div>
-    </div>
-  </section>
-`;
-
-const engagementsSection: Html = html`
-  <section class="section section--engagements">
-    <div class="grid">
-      <header class="col-span-full section-header">
-        <h2>Recent engagements</h2>
-      </header>
-      <ul class="engagements col-span-full">
-        ${engagements.map(
-          (e) => html`
-            <li class="engagement">
-              <div class="engagement-meta">
-                <span class="engagement-period">${e.period}</span>
-              </div>
-              <div class="engagement-body">
-                <h3 class="engagement-name">
-                  ${e.url
-                    ? html`<a href="${e.url}" rel="noreferrer">${e.company}</a>`
-                    : e.company}
-                </h3>
-                <p class="engagement-outcome">${e.outcome}</p>
-              </div>
-            </li>
-          `,
-        )}
-      </ul>
     </div>
   </section>
 `;
@@ -54,11 +27,9 @@ const contact: Html = html`
   <section class="section section--contact">
     <div class="grid">
       <div class="col-span-text">
-        <h2>Availability</h2>
+        <h2>Get in touch</h2>
         <p>
-          Two engagements a year, six months at a time. At month six, we
-          look at what got built and decide whether to keep going. You can
-          book both if you insist. If that sounds like a fit, grab a slot.
+          Come by the shop, or reach me here.
         </p>
         <ul class="contact-list">
           <li>${emailLink()}</li>
@@ -71,9 +42,9 @@ const contact: Html = html`
 
 export const homePage = (): Html =>
   layout({
-    title: 'Panat Taranat — Founding Engineer',
+    title: 'Panat Taranat',
     description:
-      'Founding engineer for early-stage startups. I embed, clear tech debt, set up infrastructure, and help grow engineering teams.',
+      'Engineer and co-owner of Dungeon Books, a sci-fi and fantasy bookstore in Jersey City.',
     path: '/',
-    children: html`${hero}${engagementsSection}${contact}`,
+    children: html`${hero}${contact}`,
   });
