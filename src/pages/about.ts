@@ -33,23 +33,6 @@ const hero: Html = html`
   </section>
 `;
 
-const journey: Html = html`
-  <section class="section">
-    <div class="grid">
-      <div class="col-span-text">
-        <h2>Thailand to Jersey City</h2>
-        <p>
-          I moved from Thailand to the US alone at 13 for boarding school at
-          Choate. Showed up in Connecticut with a bag full of clothes.
-          Figuring out an unfamiliar environment with no safety net became
-          the template for how I work: drop somewhere new, clock what needs
-          to happen, execute.
-        </p>
-      </div>
-    </div>
-  </section>
-`;
-
 const pivots: Html = html`
   <section class="section">
     <div class="grid">
@@ -97,7 +80,7 @@ const bookstore: Html = html`
       <div class="col-span-text">
         <h2>Dungeon Books</h2>
         <p>
-          Carrie and I met across a D&D table. A few sessions in, we were
+          Carrie and I met across a D&amp;D table. A few sessions in, we were
           sketching what eventually became
           <a href="https://dungeonbooks.com" rel="noreferrer">Dungeon Books</a>,
           a sci-fi and fantasy bookstore we opened in Jersey City in
@@ -108,7 +91,7 @@ const bookstore: Html = html`
         <p>
           The idea came from
           <a href="https://hardcover.app/@panat/lists/appendix-n-inspirational-and-educational-reading" rel="noreferrer">Appendix N</a>
-          in the original AD&D Dungeon Master's Guide, the reading list that
+          in the original AD&amp;D Dungeon Master's Guide, the reading list that
           inspired the people who wrote the game. The store is built around that premise: the same
           shelf can feed the novel you read at home and the campaign you
           run on Saturday. We wanted it to feel more like a friend's
@@ -147,7 +130,7 @@ const bookstore: Html = html`
           shelves was picked by a person who reads them.
         </p>
         <p>
-          Weekly D&D sessions in the back of the store are non-negotiable.
+          Weekly D&amp;D sessions in the back of the store are non-negotiable.
           A lot of our regulars met each other across a table of dice.
         </p>
         <p>
@@ -197,6 +180,7 @@ const elsewhere: Html = html`
           <li><strong>Boardgames.</strong> <a href="https://kallax.io/u/PXNGH-Panat" rel="noreferrer">kallax.io/u/PXNGH-Panat</a></li>
           <li><strong>Music.</strong> <a href="https://www.last.fm/user/ptaranat" rel="noreferrer">last.fm/user/ptaranat</a></li>
           <li><strong>Code.</strong> <a href="https://github.com/ptaranat" rel="noreferrer">ptaranat</a>, <a href="https://github.com/script-wizards" rel="noreferrer">script-wizards</a>, <a href="https://github.com/dungeonbooks" rel="noreferrer">dungeonbooks</a></li>
+          <li><strong>Social.</strong> <a href="https://x.com/ptaranat" rel="noreferrer">x.com/ptaranat</a>, <a href="https://www.linkedin.com/in/taranat" rel="noreferrer">linkedin.com/in/taranat</a></li>
         </ul>
       </div>
     </div>
@@ -209,5 +193,5 @@ export const aboutPage = (): Html =>
     description:
       'Software engineer, co-owner of Dungeon Books, and occasional workshop teacher in Jersey City.',
     path: '/about',
-    children: html`${hero}${journey}${pivots}${bookstore}${elsewhere}`,
+    children: html`${hero}${bookstore}${pivots}${elsewhere}`,
   });

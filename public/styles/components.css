@@ -321,10 +321,6 @@
 
 /* About page ------------------------------------------------------------- */
 
-.section--about-hero + .section .col-span-text p + p {
-  margin-top: 0.25em;
-}
-
 .section--about-hero .grid {
   row-gap: 2rem;
   align-items: start;

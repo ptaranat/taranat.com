@@ -1,6 +1,7 @@
 ---
 title: "Bicycle"
 date: 2026-05-02
+description: "People who ride every day can't draw a bicycle from memory. On the illusion of explanatory depth, and why senior engineers flub junior interview questions."
 ---
 
 ![Gianluca Gimini, Velocipedia (2016)](https://www.gianlucagimini.it/wp-content/uploads/2019/11/Gianluca-Gimini-Velocipedia-002-Anna.jpg)

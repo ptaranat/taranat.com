@@ -1,6 +1,7 @@
 ---
 title: "The Day I Knew I Existed"
 date: 2025-08-12
+description: "From a red toy robot and The Little Prince to Blindsight and AI-generated art, an essay on consciousness and the compulsion to make things."
 ---
 
 My earliest memory as a child was walking home in the evening with my mom, through a street market. I was four years old, wearing a t-shirt and shorts. My shoes didn't fit well and I was tired. I had become fixated on a toy robot a vendor was selling: a battery-operated red robot with dials and lights. I remember distinctly thinking: this robot is not alive, but I am.

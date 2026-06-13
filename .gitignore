@@ -6,5 +6,6 @@ bun.lockb
 dist
 .DS_Store
 
-# Full-resolution image master; only the generated -800/-1400 variants ship.
-public/assets/storefront-watercolor.png
+# Full-resolution image masters live here, untracked; only the generated
+# responsive variants under public/assets/ ship.
+/originals/

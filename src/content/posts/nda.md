@@ -1,6 +1,7 @@
 ---
 title: "Don't Ask Your Co-Founder to Sign an NDA"
 date: 2025-08-08
+description: "Why a founder asking you to sign an NDA before the first conversation is a red flag, and what it reveals about valuing ideas over execution."
 ---
 
 As someone with both technical engineering experience and product design experience in the startup world, I regularly receive outreach from first-time founders and aspiring entrepreneurs. These conversations follow a predictable pattern that's worth examining, particularly given how the recent AI boom has amplified certain misconceptions about building high-growth tech companies.
