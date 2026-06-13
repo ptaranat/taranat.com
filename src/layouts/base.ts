@@ -97,7 +97,11 @@ export const layout = ({
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400&display=swap"
     />
-    <link rel="stylesheet" href="/styles/main.css?v=${ASSET_VERSION}" />
+    <link rel="stylesheet" href="/styles/tokens/color.css?v=${ASSET_VERSION}" />
+    <link rel="stylesheet" href="/styles/tokens/typography.css?v=${ASSET_VERSION}" />
+    <link rel="stylesheet" href="/styles/tokens/grid.css?v=${ASSET_VERSION}" />
+    <link rel="stylesheet" href="/styles/base.css?v=${ASSET_VERSION}" />
+    <link rel="stylesheet" href="/styles/components.css?v=${ASSET_VERSION}" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
