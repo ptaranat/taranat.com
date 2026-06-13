@@ -6,7 +6,8 @@ export const blogPostPage = (post: Post): Html =>
   layout({
     title: `${post.title} — Panat Taranat`,
     description: post.description,
-    path: '/blog',
+    path: `/blog/${post.slug}`,
+    type: 'article',
     children: html`
       <article class="section section--post">
         <div class="grid">

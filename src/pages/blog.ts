@@ -44,6 +44,9 @@ export const blogPage = (): Html => {
                     `,
                   )}
                 </ul>
+                <p class="col-span-full post-index__feed">
+                  <a href="/feed.xml">Subscribe via RSS</a>
+                </p>
               </div>
             `}
       </section>

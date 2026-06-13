@@ -3,12 +3,20 @@ import { emailLink } from '../lib/email.ts';
 
 const ASSET_VERSION = String(Date.now());
 
+export const SITE_ORIGIN = 'https://taranat.com';
+const DEFAULT_OG_IMAGE = '/assets/og.jpg';
+
 type LayoutOpts = {
   title: string;
   description?: string;
   path: string;
+  type?: 'website' | 'article';
+  image?: string;
   children: Html;
 };
+
+const isCurrent = (href: string, current: string): boolean =>
+  href === '/' ? current === '/' : current === href || current.startsWith(`${href}/`);
 
 const nav = (current: string): Html => {
   const items = [
@@ -25,7 +33,7 @@ const nav = (current: string): Html => {
             <li>
               <a
                 href="${item.href}"
-                ${item.href === current ? raw('aria-current="page"') : ''}
+                ${isCurrent(item.href, current) ? raw('aria-current="page"') : ''}
               >${item.label}</a>
             </li>
           `,
@@ -53,7 +61,17 @@ const preBodyScript = raw(`
 })();
 `);
 
-export const layout = ({ title, description, path, children }: LayoutOpts): Html => html`
+export const layout = ({
+  title,
+  description,
+  path,
+  type = 'website',
+  image = DEFAULT_OG_IMAGE,
+  children,
+}: LayoutOpts): Html => {
+  const canonical = `${SITE_ORIGIN}${path}`;
+  const ogImage = `${SITE_ORIGIN}${image}`;
+  return html`
 <!doctype html>
 <html lang="en">
   <head>
@@ -61,6 +79,18 @@ export const layout = ({ title, description, path, children }: LayoutOpts): Html
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${title}</title>
     ${description ? html`<meta name="description" content="${description}" />` : ''}
+    <link rel="canonical" href="${canonical}" />
+    <meta property="og:type" content="${type}" />
+    <meta property="og:site_name" content="Panat Taranat" />
+    <meta property="og:title" content="${title}" />
+    ${description ? html`<meta property="og:description" content="${description}" />` : ''}
+    <meta property="og:url" content="${canonical}" />
+    <meta property="og:image" content="${ogImage}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${title}" />
+    ${description ? html`<meta name="twitter:description" content="${description}" />` : ''}
+    <meta name="twitter:image" content="${ogImage}" />
+    <link rel="alternate" type="application/rss+xml" title="Panat Taranat — Blog" href="/feed.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -116,3 +146,4 @@ export const layout = ({ title, description, path, children }: LayoutOpts): Html
   </body>
 </html>
 `;
+};

@@ -12,13 +12,22 @@ const hero: Html = html`
         </p>
       </div>
       <figure class="about-hero__photo">
-        <img
-          src="/assets/panat-headshot.jpg"
-          alt="Panat Taranat"
-          width="800"
-          height="1200"
-          loading="eager"
-        />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="/assets/panat-headshot-800.webp 800w, /assets/panat-headshot-1365.webp 1365w"
+            sizes="(min-width: 60rem) 25vw, 16rem"
+          />
+          <img
+            src="/assets/panat-headshot-800.jpg"
+            srcset="/assets/panat-headshot-800.jpg 800w, /assets/panat-headshot-1365.jpg 1365w"
+            sizes="(min-width: 60rem) 25vw, 16rem"
+            alt="Panat Taranat"
+            width="1365"
+            height="2048"
+            loading="eager"
+          />
+        </picture>
       </figure>
     </div>
   </section>
@@ -97,9 +106,10 @@ const bookstore: Html = html`
           slowly taking over my apartment.
         </p>
         <p>
-          The idea came from Appendix N in the original AD&D Dungeon
-          Master's Guide, the reading list that inspired the people who
-          wrote the game. The store is built around that premise: the same
+          The idea came from
+          <a href="https://hardcover.app/@panat/lists/appendix-n-inspirational-and-educational-reading" rel="noreferrer">Appendix N</a>
+          in the original AD&D Dungeon Master's Guide, the reading list that
+          inspired the people who wrote the game. The store is built around that premise: the same
           shelf can feed the novel you read at home and the campaign you
           run on Saturday. We wanted it to feel more like a friend's
           living room than a retail space, where someone could walk in for
@@ -108,13 +118,22 @@ const bookstore: Html = html`
         </p>
       </div>
       <figure class="about-figure">
-        <img
-          src="/assets/dungeonbooks-shelves.jpg"
-          alt="Shelves of sci-fi and fantasy novels and RPG books inside Dungeon Books"
-          width="1500"
-          height="1000"
-          loading="lazy"
-        />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="/assets/dungeonbooks-shelves-800.webp 800w, /assets/dungeonbooks-shelves-1500.webp 1500w"
+            sizes="(min-width: 60rem) 65rem, 100vw"
+          />
+          <img
+            src="/assets/dungeonbooks-shelves-1500.jpg"
+            srcset="/assets/dungeonbooks-shelves-800.jpg 800w, /assets/dungeonbooks-shelves-1500.jpg 1500w"
+            sizes="(min-width: 60rem) 65rem, 100vw"
+            alt="Shelves of sci-fi and fantasy novels and RPG books inside Dungeon Books"
+            width="1500"
+            height="1000"
+            loading="lazy"
+          />
+        </picture>
         <figcaption>Inside the shop.</figcaption>
       </figure>
       <div class="col-span-text">
@@ -146,14 +165,23 @@ const bookstore: Html = html`
         </p>
       </div>
       <figure class="about-figure">
-        <img
-          src="/assets/panat-carrie-storefront.jpg"
-          alt="Panat and Carrie holding a giant d20 in front of the Dungeon Books storefront"
-          width="1600"
-          height="1067"
-          loading="lazy"
-        />
-        <figcaption>Dungeon Books, Jersey City. Opened 2024.</figcaption>
+        <picture>
+          <source
+            type="image/webp"
+            srcset="/assets/panat-carrie-storefront-800.webp 800w, /assets/panat-carrie-storefront-1280.webp 1280w"
+            sizes="(min-width: 60rem) 65rem, 100vw"
+          />
+          <img
+            src="/assets/panat-carrie-storefront-1280.jpg"
+            srcset="/assets/panat-carrie-storefront-800.jpg 800w, /assets/panat-carrie-storefront-1280.jpg 1280w"
+            sizes="(min-width: 60rem) 65rem, 100vw"
+            alt="Panat and Carrie holding a giant d20 in front of the Dungeon Books storefront"
+            width="1280"
+            height="853"
+            loading="lazy"
+          />
+        </picture>
+        <figcaption>Panat and Carrie out front. Dungeon Books, Jersey City, opened 2024.</figcaption>
       </figure>
     </div>
   </section>
@@ -163,10 +191,11 @@ const elsewhere: Html = html`
   <section class="section">
     <div class="grid">
       <div class="col-span-text">
-        <h2>Elsewhere in my head</h2>
+        <h2>Elsewhere</h2>
         <ul class="about-interests">
           <li><strong>Reading.</strong> <a href="https://hardcover.app/@panat" rel="noreferrer">hardcover.app/@panat</a></li>
           <li><strong>Boardgames.</strong> <a href="https://kallax.io/u/PXNGH-Panat" rel="noreferrer">kallax.io/u/PXNGH-Panat</a></li>
+          <li><strong>Music.</strong> <a href="https://www.last.fm/user/ptaranat" rel="noreferrer">last.fm/user/ptaranat</a></li>
           <li><strong>Code.</strong> <a href="https://github.com/ptaranat" rel="noreferrer">ptaranat</a>, <a href="https://github.com/script-wizards" rel="noreferrer">script-wizards</a>, <a href="https://github.com/dungeonbooks" rel="noreferrer">dungeonbooks</a></li>
         </ul>
       </div>

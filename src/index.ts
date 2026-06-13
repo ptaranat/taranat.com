@@ -8,6 +8,10 @@ import { meetPage } from './pages/meet.ts';
 import { notFoundPage } from './pages/not-found.ts';
 import { htmlResponse } from './lib/html.ts';
 import { getPost } from './lib/posts.ts';
+import { sitemapXml, robotsTxt, feedXml } from './lib/syndication.ts';
+
+const textResponse = (body: string, contentType: string): Response =>
+  new Response(body, { headers: { 'content-type': contentType } });
 
 const app = new Elysia()
   .use(staticPlugin({ assets: 'public', prefix: '/' }))
@@ -19,7 +23,10 @@ const app = new Elysia()
     if (!post || post.draft) return htmlResponse(notFoundPage(), { status: 404 });
     return htmlResponse(blogPostPage(post));
   })
-  .get('/meet', () => htmlResponse(meetPage()));
+  .get('/meet', () => htmlResponse(meetPage()))
+  .get('/sitemap.xml', () => textResponse(sitemapXml(), 'application/xml; charset=utf-8'))
+  .get('/robots.txt', () => textResponse(robotsTxt(), 'text/plain; charset=utf-8'))
+  .get('/feed.xml', () => textResponse(feedXml(), 'application/rss+xml; charset=utf-8'));
 
 app.onError(({ code }) => {
   if (code === 'NOT_FOUND') {
