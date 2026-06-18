@@ -59,11 +59,12 @@ const pivots: Html = html`
       <div class="col-span-text">
         <h2>The pivot trail</h2>
         <p>
-          I wanted to be a surgeon. At 18 you only know what a career looks
+          I wanted to be a surgeon. I attended UConn with the intention of
+          completing the 8 year BS/MD program. At 18 you only know what a career looks
           like from the outside. By sophomore year of college I had pivoted
           to computational neuroscience, modeling how networks of neurons
-          give rise to decisions. That thread pulled me into computer
-          science without my noticing.
+          give rise to decisions, cognition and language.
+          That thread pulled me into computer science.
         </p>
         <p>
           I took a gap year to dig into graph theory and dynamical systems.
@@ -71,10 +72,10 @@ const pivots: Html = html`
           systems I was curious about, and I wanted to understand it
           properly before committing to a field. Then I went to grad school
           in Boston for hardware engineering. It was a big jump from a
-          biology degree, but by then it made more sense to me than any
-          other direction. I worked on brain-computer interfaces, wrote
+          neurobiology degree, but my math background was highly transferrable.
+          At Boston University, I worked on brain-computer interfaces, wrote
           high-performance CUDA kernels for computer vision research, and
-          spent my last two years teaching Linux kernel drivers and
+          spent two years teaching Linux kernel driver development and
           embedded systems to MS and PhD students.
         </p>
         <p>
@@ -86,7 +87,7 @@ const pivots: Html = html`
         <p>
           If there's a through-line, it's the space between layers of
           abstraction. Logic gates into microarchitecture. Microarchitecture
-          into OS. OS into distributed systems. The interesting problems
+          into OS. OS into distributed systems. Interesting problems
           live at those intersections.
         </p>
       </div>
