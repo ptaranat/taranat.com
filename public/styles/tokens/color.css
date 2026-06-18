@@ -1,29 +1,36 @@
 :root {
   color-scheme: light dark;
 
-  --paper: #f7f1e2;
-  --paper-sunk: #ede6d3;
-  --paper-raised: #fcf6ea;
+  --paper: #ffffff;
+  --paper-sunk: #f2f2f0;
+  --paper-raised: #ffffff;
 
-  --ink: #1a1613;
-  --ink-muted: #5a5249;
-  --ink-faint: #8a8174;
+  --ink: #111111;
+  --ink-muted: #4a4a4a;
+  --ink-faint: #7a7a7a;
 
-  --rule: #d4cab5;
-  --rule-strong: #b8ac93;
+  --rule: #e6e4e0;
+  --rule-strong: #c6c4c0;
 
-  --accent: #bf5700;
-  --accent-hover: #994400;
+  --accent: #e08339;
+  --accent-hover: #ec9857;
   --accent-ink: #ffffff;
 
-  --selection: #f1cfa2;
+  --selection: #ffcc99;
+
+  --frame: #e2e0dc;
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 6px 20px rgba(0, 0, 0, 0.13);
+
+  --mat: #ffffff;
+  --mat-noise: url('/assets/noise-light.svg');
 
   --noise: url('/assets/noise-light.svg');
 
-  --chrome-bg: #14110e;
-  --chrome-ink: #ede4d0;
-  --chrome-ink-muted: #9c9280;
-  --chrome-rule: #2d2821;
+  --chrome-bg: #181818;
+  --chrome-ink: #e9e7e2;
+  --chrome-ink-muted: #9a9a96;
+  --chrome-rule: #2c2c2c;
   --chrome-accent: #e08339;
   --chrome-accent-hover: #ec9857;
   --chrome-noise: url('/assets/noise-dark.svg');
@@ -31,29 +38,33 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #14110e;
-    --paper-sunk: #0c0a08;
-    --paper-raised: #1c1815;
+    --paper: #161616;
+    --paper-sunk: #0e0e0e;
+    --paper-raised: #1e1e1e;
 
-    --ink: #ede4d0;
-    --ink-muted: #9c9280;
-    --ink-faint: #5d564a;
+    --ink: #e9e7e2;
+    --ink-muted: #9a9a96;
+    --ink-faint: #5e5e5a;
 
-    --rule: #2d2821;
-    --rule-strong: #3d362c;
+    --rule: #2c2c2c;
+    --rule-strong: #3c3c3c;
 
     --accent: #e08339;
     --accent-hover: #ec9857;
-    --accent-ink: #14110e;
+    --accent-ink: #161616;
 
-    --selection: #4a2c14;
+    --selection: #5a3318;
+
+    --frame: #2c2c2c;
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 6px 24px rgba(0, 0, 0, 0.55);
 
     --noise: url('/assets/noise-dark.svg');
 
-    --chrome-bg: #14110e;
-    --chrome-ink: #ede4d0;
-    --chrome-ink-muted: #9c9280;
-    --chrome-rule: #2d2821;
+    --chrome-bg: #0b0b0b;
+    --chrome-ink: #e9e7e2;
+    --chrome-ink-muted: #9a9a96;
+    --chrome-rule: #2c2c2c;
     --chrome-accent: #e08339;
     --chrome-accent-hover: #ec9857;
     --chrome-noise: url('/assets/noise-dark.svg');
@@ -61,46 +72,52 @@
 }
 
 [data-user-color-scheme='light'] {
-  --paper: #f7f1e2;
-  --paper-sunk: #ede6d3;
-  --paper-raised: #fcf6ea;
-  --ink: #1a1613;
-  --ink-muted: #5a5249;
-  --ink-faint: #8a8174;
-  --rule: #d4cab5;
-  --rule-strong: #b8ac93;
-  --accent: #bf5700;
-  --accent-hover: #994400;
+  --paper: #ffffff;
+  --paper-sunk: #f2f2f0;
+  --paper-raised: #ffffff;
+  --ink: #111111;
+  --ink-muted: #4a4a4a;
+  --ink-faint: #7a7a7a;
+  --rule: #e6e4e0;
+  --rule-strong: #c6c4c0;
+  --accent: #e08339;
+  --accent-hover: #ec9857;
   --accent-ink: #ffffff;
-  --selection: #f1cfa2;
+  --selection: #ffcc99;
+  --frame: #e2e0dc;
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 6px 20px rgba(0, 0, 0, 0.13);
   --noise: url('/assets/noise-light.svg');
-  --chrome-bg: #14110e;
-  --chrome-ink: #ede4d0;
-  --chrome-ink-muted: #9c9280;
-  --chrome-rule: #2d2821;
+  --chrome-bg: #181818;
+  --chrome-ink: #e9e7e2;
+  --chrome-ink-muted: #9a9a96;
+  --chrome-rule: #2c2c2c;
   --chrome-accent: #e08339;
   --chrome-accent-hover: #ec9857;
   --chrome-noise: url('/assets/noise-dark.svg');
 }
 
 [data-user-color-scheme='dark'] {
-  --paper: #14110e;
-  --paper-sunk: #0c0a08;
-  --paper-raised: #1c1815;
-  --ink: #ede4d0;
-  --ink-muted: #9c9280;
-  --ink-faint: #5d564a;
-  --rule: #2d2821;
-  --rule-strong: #3d362c;
+  --paper: #161616;
+  --paper-sunk: #0e0e0e;
+  --paper-raised: #1e1e1e;
+  --ink: #e9e7e2;
+  --ink-muted: #9a9a96;
+  --ink-faint: #5e5e5a;
+  --rule: #2c2c2c;
+  --rule-strong: #3c3c3c;
   --accent: #e08339;
   --accent-hover: #ec9857;
-  --accent-ink: #14110e;
-  --selection: #4a2c14;
+  --accent-ink: #161616;
+  --selection: #5a3318;
+  --frame: #2c2c2c;
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 6px 24px rgba(0, 0, 0, 0.55);
   --noise: url('/assets/noise-dark.svg');
-  --chrome-bg: #14110e;
-  --chrome-ink: #ede4d0;
-  --chrome-ink-muted: #9c9280;
-  --chrome-rule: #2d2821;
+  --chrome-bg: #0b0b0b;
+  --chrome-ink: #e9e7e2;
+  --chrome-ink-muted: #9a9a96;
+  --chrome-rule: #2c2c2c;
   --chrome-accent: #e08339;
   --chrome-accent-hover: #ec9857;
   --chrome-noise: url('/assets/noise-dark.svg');

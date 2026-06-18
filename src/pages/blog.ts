@@ -1,6 +1,6 @@
 import { html, type Html } from '../lib/html.ts';
 import { layout } from '../layouts/base.ts';
-import { listPosts, formatDate } from '../lib/posts.ts';
+import { listPosts } from '../lib/posts.ts';
 
 const formatIndexDate = (iso: string): string =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-US', {

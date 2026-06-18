@@ -4,31 +4,52 @@ import { layout } from '../layouts/base.ts';
 const hero: Html = html`
   <section class="section section--about-hero">
     <div class="grid">
-      <div class="about-hero__text">
+      <div class="about-lead">
+        <figure class="about-hero__photo">
+          <picture>
+            <source
+              type="image/webp"
+              srcset="/assets/panat-watercolor-400.webp 400w, /assets/panat-watercolor-736.webp 736w"
+              sizes="26rem"
+            />
+            <img
+              src="/assets/panat-watercolor-736.jpg"
+              srcset="/assets/panat-watercolor-400.jpg 400w, /assets/panat-watercolor-736.jpg 736w"
+              sizes="26rem"
+              alt="Watercolor portrait of Panat Taranat"
+              width="736"
+              height="736"
+              loading="eager"
+            />
+          </picture>
+        </figure>
         <h1 class="display">About</h1>
         <p class="lede">
           I'm a software engineer based in Jersey City. In 2024 I opened
           Dungeon Books, a sci-fi and fantasy bookstore.
         </p>
+        <h2>Dungeon Books</h2>
+        <p>
+          Carrie and I met across a D&amp;D table. A few sessions in, we were
+          sketching what eventually became
+          <a href="https://dungeonbooks.com" rel="noreferrer">Dungeon Books</a>,
+          a sci-fi and fantasy bookstore we opened in Jersey City in
+          2024. Carrie came from a career in bookselling; I came in with a
+          background in software and a personal collection that had been
+          slowly taking over my apartment.
+        </p>
+        <p>
+          The idea came from
+          <a href="https://hardcover.app/@panat/lists/appendix-n-inspirational-and-educational-reading" rel="noreferrer">Appendix N</a>
+          in the original AD&amp;D Dungeon Master's Guide, the reading list that
+          inspired the people who wrote the game. The store is built around that premise: the same
+          shelf can feed the novel you read at home and the campaign you
+          run on Saturday. We wanted it to feel more like a friend's
+          living room than a retail space, where someone could walk in for
+          one book and leave with the one they didn't know they were
+          looking for.
+        </p>
       </div>
-      <figure class="about-hero__photo">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="/assets/panat-headshot-800.webp 800w, /assets/panat-headshot-1365.webp 1365w"
-            sizes="(min-width: 60rem) 25vw, 16rem"
-          />
-          <img
-            src="/assets/panat-headshot-800.jpg"
-            srcset="/assets/panat-headshot-800.jpg 800w, /assets/panat-headshot-1365.jpg 1365w"
-            sizes="(min-width: 60rem) 25vw, 16rem"
-            alt="Panat Taranat"
-            width="1365"
-            height="2048"
-            loading="eager"
-          />
-        </picture>
-      </figure>
     </div>
   </section>
 `;
@@ -77,29 +98,6 @@ const pivots: Html = html`
 const bookstore: Html = html`
   <section class="section">
     <div class="grid">
-      <div class="col-span-text">
-        <h2>Dungeon Books</h2>
-        <p>
-          Carrie and I met across a D&amp;D table. A few sessions in, we were
-          sketching what eventually became
-          <a href="https://dungeonbooks.com" rel="noreferrer">Dungeon Books</a>,
-          a sci-fi and fantasy bookstore we opened in Jersey City in
-          2024. Carrie came from a career in bookselling; I came in with a
-          background in software and a personal collection that had been
-          slowly taking over my apartment.
-        </p>
-        <p>
-          The idea came from
-          <a href="https://hardcover.app/@panat/lists/appendix-n-inspirational-and-educational-reading" rel="noreferrer">Appendix N</a>
-          in the original AD&amp;D Dungeon Master's Guide, the reading list that
-          inspired the people who wrote the game. The store is built around that premise: the same
-          shelf can feed the novel you read at home and the campaign you
-          run on Saturday. We wanted it to feel more like a friend's
-          living room than a retail space, where someone could walk in for
-          one book and leave with the one they didn't know they were
-          looking for.
-        </p>
-      </div>
       <figure class="about-figure">
         <picture>
           <source
