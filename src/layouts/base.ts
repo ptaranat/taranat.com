@@ -125,10 +125,26 @@ export const layout = ({
         </details>
         <script>${raw(`(function(){
           var d = document.currentScript.previousElementSibling;
+          var summary = d.querySelector('.site-nav-toggle');
           var mq = matchMedia('(min-width: 60rem)');
-          var sync = function(){ mq.matches ? d.setAttribute('open','') : d.removeAttribute('open'); };
+          var close = function(){ d.removeAttribute('open'); };
+          var sync = function(){ mq.matches ? d.setAttribute('open','') : close(); };
           sync();
           mq.addEventListener('change', sync);
+          summary.addEventListener('click', function(e){
+            if(mq.matches) return;
+            e.preventDefault();
+            d.open ? close() : d.setAttribute('open','');
+          });
+          d.querySelectorAll('.site-nav a').forEach(function(a){
+            a.addEventListener('click', function(){ if(!mq.matches) close(); });
+          });
+          document.addEventListener('click', function(e){
+            if(!mq.matches && d.open && !d.contains(e.target)) close();
+          });
+          document.addEventListener('keydown', function(e){
+            if(e.key === 'Escape' && !mq.matches && d.open){ close(); summary.focus(); }
+          });
         })();`)}</script>
       </div>
     </header>
