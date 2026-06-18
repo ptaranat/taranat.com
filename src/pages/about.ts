@@ -46,8 +46,7 @@ const hero: Html = html`
           shelf can feed the novel you read at home and the campaign you
           run on Saturday. We wanted it to feel more like a friend's
           living room than a retail space, where someone could walk in for
-          one book and leave with the one they didn't know they were
-          looking for.
+          one book and leave with one they weren't looking for. I call it foraging for ideas.
         </p>
       </div>
     </div>
@@ -121,9 +120,9 @@ const bookstore: Html = html`
         <p>
           We run it a little differently than most indie shops. The
           business side gets treated like a small product: we look at
-          what's working, try things, and try to be honest with ourselves
-          when something isn't. Year one came in at roughly 29% growth
-          without loans or outside investors, which still feels surreal to
+          what's going well, experiment, and be honest with ourselves
+          when something isn't working out. Year one came in at 29% growth
+          without loans or outside investors, which feels surreal to
           type. The part I'm prouder of, though, is that every book on our
           shelves was picked by a person who reads them.
         </p>
@@ -133,7 +132,7 @@ const bookstore: Html = html`
         </p>
         <p>
           Outside the shop, I teach AI and technology workshops at the
-          Jersey City Free Public Library and give occasional presentations
+          Jersey City Free Public Library and occassionally give presentations
           on technology and tabletop games at Liberty Science Center. Most
           of what I earn goes back into the store and the programs we run
           around it.
@@ -189,7 +188,7 @@ export const aboutPage = (): Html =>
   layout({
     title: 'About — Panat Taranat',
     description:
-      'Software engineer, co-owner of Dungeon Books, and occasional workshop teacher in Jersey City.',
+      'Software engineer and co-owner of Dungeon Books, based in Jersey City.',
     path: '/about',
     children: html`${hero}${bookstore}${pivots}${elsewhere}`,
   });
