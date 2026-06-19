@@ -163,6 +163,7 @@ export const layout = ({
     </footer>
     <script src="/js/theme.js?v=${ASSET_VERSION}" defer></script>
     <script src="/js/email.js?v=${ASSET_VERSION}" defer></script>
+    <script src="/js/code-copy.js?v=${ASSET_VERSION}" defer></script>
   </body>
 </html>
 `;

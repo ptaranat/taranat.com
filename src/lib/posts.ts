@@ -1,8 +1,8 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import matter from 'gray-matter';
-import { marked } from 'marked';
 import { raw, type Html } from './html.ts';
+import { renderMarkdown } from './markdown.ts';
 
 export type Post = {
   slug: string;
@@ -61,8 +61,8 @@ const load = (): Post[] => {
       date: toIsoDate(data.date),
       description: typeof data.description === 'string' ? data.description : undefined,
       draft: data.draft === true,
-      body: raw(marked.parse(fullContent, { async: false }) as string),
-      excerpt: raw(marked.parse(excerptMd, { async: false }) as string),
+      body: raw(renderMarkdown(fullContent)),
+      excerpt: raw(renderMarkdown(excerptMd)),
     } satisfies Post;
   });
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));

@@ -718,6 +718,85 @@
   padding: 0;
 }
 
+/* Shiki syntax highlighting. github-light renders by default via inline
+   styles; switch to material-theme-darker when the reader is in dark mode
+   (manual toggle wins, otherwise follow the OS). */
+.post-body .shiki {
+  border: 1px solid var(--rule);
+}
+
+.code-block {
+  position: relative;
+}
+
+.code-block .code-copy {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.code-block:hover .code-copy,
+.code-block:focus-within .code-copy {
+  opacity: 1;
+}
+
+.code-block .code-copy:hover {
+  color: var(--ink);
+  border-color: var(--rule-strong);
+}
+
+.code-block .code-copy:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.code-block .code-copy[data-copied='true'] {
+  opacity: 1;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* No hover on touch devices, so keep the button visible. */
+@media (hover: none) {
+  .code-block .code-copy {
+    opacity: 1;
+  }
+}
+
+[data-user-color-scheme='dark'] .post-body .shiki,
+[data-user-color-scheme='dark'] .post-body .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-user-color-scheme='light']) .post-body .shiki,
+  :root:not([data-user-color-scheme='light']) .post-body .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
 /* Meet embed ------------------------------------------------------------- */
 
 .meet-embed {
