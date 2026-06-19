@@ -87,6 +87,8 @@ export default function (pi: ExtensionAPI) {
 }
 ```
 
+I did all this and then I found out there's actually a really good [pi-neuralwatt](https://github.com/aliou/pi-neuralwatt) extension already. Use that instead.
+
 Pi is cool, but if I were to use it as a daily driver with GLM-5.2, I needed more.
 
 ## The omp rabbit hole
@@ -113,6 +115,10 @@ providers:
           supportsReasoningEffort: true
           reasoningEffortMap: { xhigh: max, high: high, minimal: minimal }
 ```
+
+The sad part is I don't get energy-based usage pricing like the pi-neuralwatt extension. Maybe someone could port it over to OMP one day.
+I'm pretty impressed with omp but it ships with a lot of bells and whistles.
+So now I'm mostly just messing around with omp to see what features I like, so I can go back to a minimal pi and add only the things I need.
 
 ## Plumbing and metering
 
