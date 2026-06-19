@@ -63,7 +63,3 @@ Ideas are abundant; successful execution remains scarce. The founders who unders
 
 - [Why I Won't Sign Your NDA](https://blog.jpl-consulting.com/2012/04/why-i-wont-sign-your-nda/)
 - [I Just Need a Programmer](https://www.cs.uni.edu/~wallingf/blog/archives/monthly/2010-12.html#e2010-12-01T15_45_40.htm)
-
----
-
-If you've made it this far, check out the wizard-themed version of this post: [Don't Ask Your Wizard to Sign a Magical Contract](https://dungeonengineering.com/dont-ask-your-wizard-to-sign-a-magical-contract/).

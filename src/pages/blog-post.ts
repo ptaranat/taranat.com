@@ -8,6 +8,7 @@ export const blogPostPage = (post: Post): Html =>
     description: post.description,
     path: `/blog/${post.slug}`,
     type: 'article',
+    image: post.image,
     children: html`
       <article class="section section--post">
         <div class="grid">

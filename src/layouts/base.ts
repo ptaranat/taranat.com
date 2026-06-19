@@ -4,7 +4,19 @@ import { emailLink } from '../lib/email.ts';
 const ASSET_VERSION = String(Date.now());
 
 export const SITE_ORIGIN = 'https://taranat.com';
-const DEFAULT_OG_IMAGE = '/assets/og.jpg';
+const DEFAULT_OG_IMAGE = '/assets/og-default.png';
+
+/** Resolve a share image to an absolute URL. Absolute and protocol-relative
+ *  values are honored as-is; relative values are resolved against the site
+ *  origin. Falls back to the default image on anything the URL parser rejects. */
+const resolveImageUrl = (image: string): string => {
+  if (!image.trim()) return new URL(DEFAULT_OG_IMAGE, SITE_ORIGIN).href;
+  try {
+    return new URL(image, SITE_ORIGIN).href;
+  } catch {
+    return new URL(DEFAULT_OG_IMAGE, SITE_ORIGIN).href;
+  }
+};
 
 type LayoutOpts = {
   title: string;
@@ -70,7 +82,7 @@ export const layout = ({
   children,
 }: LayoutOpts): Html => {
   const canonical = `${SITE_ORIGIN}${path}`;
-  const ogImage = `${SITE_ORIGIN}${image}`;
+  const ogImage = resolveImageUrl(image);
   return html`
 <!doctype html>
 <html lang="en">

@@ -10,6 +10,7 @@ export type Post = {
   date: string;
   description?: string;
   draft: boolean;
+  image?: string;
   body: Html;
   excerpt: Html;
 };
@@ -26,6 +27,8 @@ const stripLeadingMedia = (md: string): string => {
   }
   return blocks.join('\n\n');
 };
+
+const firstImage = (md: string): string | undefined => md.match(/!\[[^\]]*\]\(([^)\s]+)/)?.[1];
 
 const buildExcerpt = (raw: string): string => {
   const idx = raw.search(MORE);
@@ -61,6 +64,7 @@ const load = (): Post[] => {
       date: toIsoDate(data.date),
       description: typeof data.description === 'string' ? data.description : undefined,
       draft: data.draft === true,
+      image: typeof data.image === 'string' ? data.image : firstImage(content),
       body: raw(renderMarkdown(fullContent)),
       excerpt: raw(renderMarkdown(excerptMd)),
     } satisfies Post;
