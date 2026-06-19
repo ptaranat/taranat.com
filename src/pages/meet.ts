@@ -5,11 +5,10 @@ const body: Html = html`
   <section class="section section--meet">
     <div class="grid">
       <div class="col-span-text">
-        <h1 class="display">Book a call</h1>
+        <h1 class="display">Grab some time with me</h1>
         <p class="lede">
-          Thirty minutes, no agenda required. Happy to talk software,
-          distributed systems, the bookstore, or anything you're building
-          in or around the indie-bookstore trade.
+          Here's my calendar. Happy to talk software,
+          the bookstore, or anything you're working on.
         </p>
       </div>
       <div class="col-span-full meet-embed">
@@ -26,9 +25,9 @@ const body: Html = html`
 
 export const meetPage = (): Html =>
   layout({
-    title: 'Book a call — Panat Taranat',
+    title: 'Schedule a meeting — Panat Taranat',
     description:
-      'Schedule a 30-minute call with Panat Taranat — software, distributed systems, or the indie-bookstore trade.',
+      'Find a time to chat with Panat Taranat.',
     path: '/meet',
     children: body,
   });
