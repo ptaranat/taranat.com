@@ -13,12 +13,12 @@ ACCENT='#e08339'
 
 # Name is the focal point. Orange is used once, on the URL.
 name='<span font="Literata SemiBold 132" foreground="'"$INK"'">Panat Taranat</span>'
-tagline='<span font="IBM Plex Mono 27" foreground="'"$MUTED"'" letter_spacing="600">software engineer · bookseller</span>'
+tagline='<span font="IBM Plex Mono 34" foreground="'"$MUTED"'" letter_spacing="400">software engineer &#38; bookseller</span>'
 url='<span font="IBM Plex Mono 27" foreground="'"$ACCENT"'" letter_spacing="1400">taranat.com</span>'
 
 convert -density 72 -size 1200x630 "xc:$PAPER" \
   -stroke "$FRAME" -strokewidth 1 -fill none -draw "rectangle 26,26 1173,603" \
-  \( -background none pango:"$name" \)    -gravity NorthWest -geometry +91+222 -composite \
+  \( -background none pango:"$name" \)    -gravity NorthWest -geometry +91+178 -composite \
   \( -background none pango:"$tagline" \) -gravity NorthWest -geometry +95+426 -composite \
   \( -background none pango:"$url" \)     -gravity NorthWest -geometry +95+524 -composite \
   "$OUT"
