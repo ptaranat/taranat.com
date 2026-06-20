@@ -133,7 +133,7 @@ const bookstore: Html = html`
         </p>
         <p>
           Outside the shop, I teach AI and technology workshops at the
-          Jersey City Free Public Library and occassionally give presentations
+          Jersey City Free Public Library and give presentations
           on technology and tabletop games at Liberty Science Center. Most
           of what I earn goes back into the store and the programs we run
           around it.
