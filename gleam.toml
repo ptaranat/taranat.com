@@ -1,0 +1,29 @@
+name = "taranat"
+version = "1.0.0"
+
+# Fill out these fields if you intend to generate HTML documentation or publish
+# your project to the Hex package manager.
+#
+# description = ""
+# licences = ["Apache-2.0"]
+# repository = { type = "github", user = "", repo = "" }
+# links = [{ title = "Website", href = "" }]
+#
+# For a full reference of all the available options, you can have a look at
+# https://gleam.run/writing-gleam/gleam-toml/.
+
+[dependencies]
+gleam_stdlib = ">= 0.60.0 and < 2.0.0"
+lustre = ">= 5.7.1 and < 6.0.0"
+# The newest lustre_ssg on Hex (0.11.0, Apr 2025) pins jot == 4.0.0, which calls
+# the long-removed result.then and so cannot compile against any stdlib that
+# lustre also accepts. Unreleased main pins jot >= 8.0.0 and does build.
+lustre_ssg = { git = "https://github.com/lustre-labs/ssg.git", ref = "2992bf78179d1be2876f834f0d923003f7f43f44" }
+simplifile = ">= 2.5.0 and < 3.0.0"
+tom = ">= 1.1.1 and < 2.0.0"
+smalto = { git = "https://github.com/veeso/smalto.git", ref = "afc7635ce5c2de6ab7bcef870cf08d628fdc4099" }
+mork = ">= 1.12.1 and < 2.0.0"
+mork_to_lustre = ">= 1.0.0 and < 2.0.0"
+
+[dev_dependencies]
+gleeunit = ">= 1.0.0 and < 2.0.0"

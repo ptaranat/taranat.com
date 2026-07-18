@@ -718,11 +718,49 @@
   padding: 0;
 }
 
-/* Shiki syntax highlighting. github-light renders by default via inline
-   styles; switch to material-theme-darker when the reader is in dark mode
-   (manual toggle wins, otherwise follow the OS). */
-.post-body .shiki {
+.post-body pre {
   border: 1px solid var(--rule);
+}
+
+.post-body li > p {
+  margin: 0;
+}
+
+.smalto-comment {
+  color: var(--syn-comment);
+  font-style: italic;
+}
+
+.smalto-keyword,
+.smalto-atrule,
+.smalto-important {
+  color: var(--syn-keyword);
+}
+
+.smalto-string {
+  color: var(--syn-string);
+}
+
+.smalto-number,
+.smalto-boolean {
+  color: var(--syn-number);
+}
+
+.smalto-function {
+  color: var(--syn-function);
+}
+
+.smalto-variable {
+  color: var(--syn-variable);
+}
+
+.smalto-property {
+  color: var(--syn-property);
+}
+
+.smalto-punctuation,
+.smalto-operator {
+  color: var(--syn-punctuation);
 }
 
 .code-block {
@@ -774,26 +812,6 @@
 @media (hover: none) {
   .code-block .code-copy {
     opacity: 1;
-  }
-}
-
-[data-user-color-scheme='dark'] .post-body .shiki,
-[data-user-color-scheme='dark'] .post-body .shiki span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-user-color-scheme='light']) .post-body .shiki,
-  :root:not([data-user-color-scheme='light']) .post-body .shiki span {
-    color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
-    font-style: var(--shiki-dark-font-style) !important;
-    font-weight: var(--shiki-dark-font-weight) !important;
-    text-decoration: var(--shiki-dark-text-decoration) !important;
   }
 }
 
@@ -856,7 +874,7 @@
 
 @media (min-width: 60rem) {
   .section--hero .grid {
-    align-items: center;
+    align-items: start;
   }
 
   .home-hero__text {

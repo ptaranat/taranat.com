@@ -1,0 +1,25 @@
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+
+	@feed path /feed.xml
+	header @feed Content-Type "application/rss+xml; charset=utf-8"
+
+	@sitemap path /sitemap.xml
+	header @sitemap Content-Type "application/xml; charset=utf-8"
+
+	try_files {path} {path}/index.html
+
+	file_server
+
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}
