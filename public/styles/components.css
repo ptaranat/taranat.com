@@ -398,6 +398,27 @@
   margin-right: 0.35rem;
 }
 
+.definition {
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+}
+
+.definition dfn {
+  font-style: italic;
+  color: var(--ink);
+}
+
+.definition__pos {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
+
+h2 + .definition {
+  margin-top: -0.6rem;
+}
+
 .about-interests {
   list-style: none;
   display: flex;

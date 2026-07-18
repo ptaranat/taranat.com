@@ -2,6 +2,7 @@ import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 import lustre/element/html
 import taranat/layout
+import taranat/ui
 
 pub fn view() -> Element(Nil) {
   layout.render(
@@ -12,7 +13,7 @@ pub fn view() -> Element(Nil) {
       kind: "website",
       image: layout.default_og_image,
     ),
-    [hero(), bookstore(), pivots(), elsewhere()],
+    [hero(), bookstore(), colophon(), elsewhere()],
   )
 }
 
@@ -77,30 +78,28 @@ fn hero() -> Element(Nil) {
   ])
 }
 
-fn pivots() -> Element(Nil) {
+fn colophon() -> Element(Nil) {
   html.section([attribute.class("section")], [
     html.div([attribute.class("grid")], [
       html.div([attribute.class("col-span-text")], [
-        html.h2([], [html.text("The pivot trail")]),
+        html.h2([], [html.text("Colophon")]),
+        ui.definition(
+          word: "colophon",
+          part_of_speech: "n.",
+          meaning: "a note at the back of a book saying how it was made.",
+        ),
         html.p([], [
           html.text(
-            "I wanted to be a surgeon. I attended UConn with the intention of completing the 8 year BS/MD program. At 18 you only know what a career looks like from the outside. By sophomore year of college I had pivoted to computational neuroscience, modeling how networks of neurons give rise to decisions, cognition and language. That thread pulled me into computer science.",
+            "This site is a small Gleam program that writes HTML files. ",
+          ),
+          html.text(
+            "There is no framework and nothing running on a server. The CSS is hand-written, and the only JavaScript is three short files: the theme toggle, the email link, and the copy buttons on code blocks.",
           ),
         ]),
         html.p([], [
-          html.text(
-            "I took a gap year to dig into graph theory and dynamical systems. The math that describes brains also describes most of the complex systems I was curious about, and I wanted to understand it properly before committing to a field. Then I went to grad school in Boston for hardware engineering. It was a big jump from a neurobiology degree, but my math background was highly transferrable. At Boston University, I worked on brain-computer interfaces, wrote high-performance CUDA kernels for computer vision research, and spent two years teaching Linux kernel driver development and embedded systems to MS and PhD students.",
-          ),
-        ]),
-        html.p([], [
-          html.text(
-            "After grad school I pivoted once more, from hardware to cloud and distributed systems. At RapDev I built observability tooling for Fortune 500 companies. At Rokt I shipped distributed systems powering millions of upsells.",
-          ),
-        ]),
-        html.p([], [
-          html.text(
-            "If there's a through-line, it's the space between layers of abstraction. Logic gates into microarchitecture. Microarchitecture into OS. OS into distributed systems. Interesting problems live at those intersections.",
-          ),
+          html.text("The source is on "),
+          ext_link("https://github.com/ptaranat/taranat.com", "GitHub"),
+          html.text("."),
         ]),
       ]),
     ]),
