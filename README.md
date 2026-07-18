@@ -121,4 +121,8 @@ too.
 
 ## License
 
-MIT. See [LICENSE](./LICENSE).
+Source code is MIT. See [LICENSE](./LICENSE).
+
+Blog posts under `content/` and media under `public/assets/` are not covered:
+they are copyright reserved, and some media is reproduced under fair use and
+belongs to its respective owner.
