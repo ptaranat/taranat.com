@@ -24,6 +24,7 @@ tom = ">= 1.1.1 and < 2.0.0"
 smalto = { git = "https://github.com/veeso/smalto.git", ref = "afc7635ce5c2de6ab7bcef870cf08d628fdc4099" }
 mork = ">= 1.12.1 and < 2.0.0"
 mork_to_lustre = ">= 1.0.0 and < 2.0.0"
+gleam_erlang = ">= 1.3.0 and < 2.0.0"
 
 [dev_dependencies]
 gleeunit = ">= 1.0.0 and < 2.0.0"

@@ -40,6 +40,14 @@ fn strip_runtime_markers() -> Nil {
 }
 
 pub fn main() {
+  case build() {
+    True -> Nil
+    False -> panic as "build failed"
+  }
+}
+
+/// Returns False when the build fails, so `gleam dev` can keep watching.
+pub fn build() -> Bool {
   let posts = post.published(post.load_all())
 
   let config =
@@ -66,10 +74,11 @@ pub fn main() {
       io.println(
         "built ./dist with " <> int.to_string(list.length(posts)) <> " posts",
       )
+      True
     }
     Error(error) -> {
       io.println("build failed: " <> string.inspect(error))
-      panic as "ssg build failed"
+      False
     }
   }
 }

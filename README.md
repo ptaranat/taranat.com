@@ -5,14 +5,21 @@ Personal site of Panat Taranat. Gleam + Lustre, generated to static HTML, hand-w
 ## Develop
 
 ```
-gleam run
+gleam dev
 ```
 
-Writes the site to `dist/`. Serve it with any static file server:
+Builds to `dist/`, then rebuilds whenever anything under `content/` or
+`public/` changes. Serve it alongside and refresh the browser:
 
 ```
 python3 -m http.server -d dist 3000
 ```
+
+Editing `src/` needs a restart: the running process holds already-compiled
+code, so the watcher warns rather than emitting stale output.
+
+`gleam run` does a single build with no watching, and is what the Dockerfile
+uses.
 
 ## Structure
 
