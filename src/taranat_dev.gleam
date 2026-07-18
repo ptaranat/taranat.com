@@ -12,9 +12,24 @@ const source_dir = "src"
 
 const poll_ms = 400
 
+const port = 3000
+
+@external(erlang, "taranat_dev_ffi", "serve")
+fn serve(port: Int, doc_root: String) -> Result(Nil, String)
+
 pub fn main() {
-  io.println("watching content/ and public/ — ctrl-c to stop")
   let _ = taranat.build()
+
+  case serve(port, "./dist") {
+    Ok(_) ->
+      io.println(
+        "serving http://localhost:"
+        <> int.to_string(port)
+        <> " — watching content/ and public/, ctrl-c to stop",
+      )
+    Error(reason) ->
+      io.println("could not start dev server: " <> reason <> " (build only)")
+  }
   watch(fingerprint(content_dirs), fingerprint([source_dir]))
 }
 
@@ -23,10 +38,7 @@ fn watch(content: String, source: String) -> Nil {
 
   let next_source = fingerprint([source_dir])
   case next_source == source {
-    False ->
-      // The running process holds already-compiled code, so rebuilding here
-      // would silently emit the old output.
-      io.println("src/ changed — restart `gleam dev` to pick it up")
+    False -> io.println("src/ changed — restart `gleam dev` to pick it up")
     True -> Nil
   }
 
@@ -42,8 +54,6 @@ fn watch(content: String, source: String) -> Nil {
   watch(next_content, next_source)
 }
 
-/// Size and mtime of every watched file. Cheap enough at this scale, and it
-/// catches edits that leave the size unchanged.
 fn fingerprint(dirs: List(String)) -> String {
   dirs
   |> list.flat_map(fn(dir) {

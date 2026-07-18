@@ -9,8 +9,6 @@ pub const site_origin = "https://taranat.com"
 
 pub const default_og_image = "/assets/og-default.png"
 
-const asset_version = "1"
-
 pub type Meta {
   Meta(
     title: String,
@@ -113,14 +111,14 @@ const nav_script = "(function(){
   });
 })();"
 
-fn stylesheet(path: String) -> Element(msg) {
+fn stylesheet(path: String, assets: String) -> Element(msg) {
   html.link([
     attribute.rel("stylesheet"),
-    attribute.href(path <> "?v=" <> asset_version),
+    attribute.href(path <> "?v=" <> assets),
   ])
 }
 
-fn head_element(meta: Meta) -> Element(msg) {
+fn head_element(meta: Meta, assets: String) -> Element(msg) {
   let canonical = site_origin <> meta.path
   let og_image = resolve_image(meta.image)
   let has_description = meta.description != ""
@@ -213,11 +211,11 @@ fn head_element(meta: Meta) -> Element(msg) {
             "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400&display=swap",
           ),
         ]),
-        stylesheet("/styles/tokens/color.css"),
-        stylesheet("/styles/tokens/typography.css"),
-        stylesheet("/styles/tokens/grid.css"),
-        stylesheet("/styles/base.css"),
-        stylesheet("/styles/components.css"),
+        stylesheet("/styles/tokens/color.css", assets),
+        stylesheet("/styles/tokens/typography.css", assets),
+        stylesheet("/styles/tokens/grid.css", assets),
+        stylesheet("/styles/base.css", assets),
+        stylesheet("/styles/components.css", assets),
         html.link([
           attribute.rel("icon"),
           attribute.type_("image/x-icon"),
@@ -258,16 +256,20 @@ fn head_element(meta: Meta) -> Element(msg) {
   )
 }
 
-fn deferred_script(path: String) -> Element(msg) {
+fn deferred_script(path: String, assets: String) -> Element(msg) {
   html.script(
-    [attribute.src(path <> "?v=" <> asset_version), attribute("defer", "")],
+    [attribute.src(path <> "?v=" <> assets), attribute("defer", "")],
     "",
   )
 }
 
-pub fn render(meta: Meta, children: List(Element(msg))) -> Element(msg) {
+pub fn render(
+  meta: Meta,
+  assets: String,
+  children: List(Element(msg)),
+) -> Element(msg) {
   html.html([attribute.lang("en")], [
-    head_element(meta),
+    head_element(meta, assets),
     html.body([], [
       html.a([attribute.class("skip"), attribute.href("#main")], [
         html.text("Skip to content"),
@@ -304,9 +306,9 @@ pub fn render(meta: Meta, children: List(Element(msg))) -> Element(msg) {
           html.div([attribute.class("col")], [email.link()]),
         ]),
       ]),
-      deferred_script("/js/theme.js"),
-      deferred_script("/js/email.js"),
-      deferred_script("/js/code-copy.js"),
+      deferred_script("/js/theme.js", assets),
+      deferred_script("/js/email.js", assets),
+      deferred_script("/js/code-copy.js", assets),
     ]),
   ])
 }

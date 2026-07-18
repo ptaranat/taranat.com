@@ -4,7 +4,7 @@ import lustre/element/html
 import taranat/layout
 import taranat/post.{type Post}
 
-pub fn view(p: Post) -> Element(Nil) {
+pub fn view(p: Post, assets: String) -> Element(Nil) {
   layout.render(
     layout.Meta(
       title: p.title <> " \u{2014} Panat Taranat",
@@ -16,6 +16,7 @@ pub fn view(p: Post) -> Element(Nil) {
         found -> found
       },
     ),
+    assets,
     [
       html.article([attribute.class("section section--post")], [
         html.div([attribute.class("grid")], [

@@ -107,7 +107,6 @@ pub fn field(
   }
 }
 
-/// Leading image blocks are dropped so the index never opens with a photo.
 fn build_excerpt(content: String) -> String {
   case string.split_once(content, more_marker) {
     Ok(#(before, _)) -> string.trim(strip_leading_media(before))

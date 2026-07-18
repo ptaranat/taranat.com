@@ -5,7 +5,7 @@ import lustre/element/html
 import taranat/layout
 import taranat/post.{type Post}
 
-pub fn view(posts: List(Post)) -> Element(Nil) {
+pub fn view(posts: List(Post), assets: String) -> Element(Nil) {
   layout.render(
     layout.Meta(
       title: "Blog \u{2014} Panat Taranat",
@@ -14,6 +14,7 @@ pub fn view(posts: List(Post)) -> Element(Nil) {
       kind: "website",
       image: layout.default_og_image,
     ),
+    assets,
     [
       html.section(
         [

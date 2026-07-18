@@ -6,7 +6,7 @@ import taranat/layout
 
 const description = "Software engineer and co-owner of Dungeon Books, a sci-fi and fantasy bookstore in Jersey City. I build distributed systems and tools for the indie-bookstore trade."
 
-pub fn view() -> Element(Nil) {
+pub fn view(assets: String) -> Element(Nil) {
   layout.render(
     layout.Meta(
       title: "Panat Taranat",
@@ -15,6 +15,7 @@ pub fn view() -> Element(Nil) {
       kind: "website",
       image: layout.default_og_image,
     ),
+    assets,
     [hero(), contact()],
   )
 }

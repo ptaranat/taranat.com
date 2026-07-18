@@ -5,6 +5,7 @@ import gleam/string
 import lustre/element
 import lustre/ssg
 import simplifile
+import taranat/assets
 import taranat/pages/about
 import taranat/pages/blog
 import taranat/pages/home
@@ -17,14 +18,13 @@ import taranat/syndication
 fn add_post_routes(
   config: ssg.Config(ssg.HasStaticRoutes, dir, index),
   posts: List(Post),
+  assets: String,
 ) -> ssg.Config(ssg.HasStaticRoutes, dir, index) {
   list.fold(posts, config, fn(acc, p) {
-    ssg.add_static_route(acc, "/blog/" <> p.slug, post_page.view(p))
+    ssg.add_static_route(acc, "/blog/" <> p.slug, post_page.view(p, assets))
   })
 }
 
-/// Lustre emits vdom reconciliation markers for its client runtime. Nothing
-/// here ships that runtime, so they are dead weight in the output.
 fn strip_runtime_markers() -> Nil {
   let assert Ok(files) = simplifile.get_files("./dist")
 
@@ -46,24 +46,24 @@ pub fn main() {
   }
 }
 
-/// Returns False when the build fails, so `gleam dev` can keep watching.
 pub fn build() -> Bool {
   let posts = post.published(post.load_all())
+  let assets = assets.digest()
 
   let config =
     ssg.new("./dist")
     |> ssg.add_static_dir("public")
-    |> ssg.add_static_route("/", home.view())
-    |> ssg.add_static_route("/about", about.view())
-    |> ssg.add_static_route("/blog", blog.view(posts))
-    |> ssg.add_static_route("/meet", meet.view())
-    |> add_post_routes(posts)
+    |> ssg.add_static_route("/", home.view(assets))
+    |> ssg.add_static_route("/about", about.view(assets))
+    |> ssg.add_static_route("/blog", blog.view(posts, assets))
+    |> ssg.add_static_route("/meet", meet.view(assets))
+    |> add_post_routes(posts, assets)
     |> ssg.add_static_asset("/robots.txt", syndication.robots_txt())
     |> ssg.add_static_asset("/sitemap.xml", syndication.sitemap_xml(posts))
     |> ssg.add_static_asset("/feed.xml", syndication.feed_xml(posts))
     |> ssg.add_static_asset(
       "/404.html",
-      element.to_document_string(not_found.view()),
+      element.to_document_string(not_found.view(assets)),
     )
     |> ssg.use_index_routes
 

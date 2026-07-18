@@ -3,7 +3,7 @@ import lustre/element.{type Element}
 import lustre/element/html
 import taranat/layout
 
-pub fn view() -> Element(Nil) {
+pub fn view(assets: String) -> Element(Nil) {
   layout.render(
     layout.Meta(
       title: "404 \u{2014} Panat Taranat",
@@ -12,6 +12,7 @@ pub fn view() -> Element(Nil) {
       kind: "website",
       image: layout.default_og_image,
     ),
+    assets,
     [
       html.section([attribute.class("section section--hero")], [
         html.div([attribute.class("grid")], [

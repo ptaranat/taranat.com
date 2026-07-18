@@ -4,7 +4,7 @@ import lustre/element/html
 import taranat/layout
 import taranat/ui
 
-pub fn view() -> Element(Nil) {
+pub fn view(assets: String) -> Element(Nil) {
   layout.render(
     layout.Meta(
       title: "About \u{2014} Panat Taranat",
@@ -13,6 +13,7 @@ pub fn view() -> Element(Nil) {
       kind: "website",
       image: layout.default_og_image,
     ),
+    assets,
     [hero(), bookstore(), colophon(), elsewhere()],
   )
 }
