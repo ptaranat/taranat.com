@@ -156,7 +156,7 @@
 }
 
 .site-main {
-  padding-block: clamp(2rem, 4vw, 4rem);
+  padding-block: var(--page-pad) clamp(2rem, 4vw, 4rem);
 }
 
 .site-footer {
@@ -196,7 +196,11 @@
 /* Section primitives ----------------------------------------------------- */
 
 .section {
-  padding-block: clamp(2rem, 5vw, 4rem);
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.site-main > .section:first-child {
+  padding-block-start: 0;
 }
 
 .section-header {
@@ -396,6 +400,111 @@
   text-transform: uppercase;
   color: var(--ink);
   margin-right: 0.35rem;
+}
+
+.shelves {
+  display: grid;
+  gap: 2rem;
+}
+
+.section .shelf__title {
+  font-size: var(--fs-h3);
+  margin: 0 0 0.9rem;
+}
+
+.shelf__row {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 0.75rem;
+  align-items: flex-start;
+}
+
+.shelf__item a,
+.shelf__item span {
+  display: block;
+  text-decoration: none;
+}
+
+.shelf__item {
+  width: 6.5rem;
+}
+
+.shelf__caption {
+  display: block;
+  margin-top: 0.4rem;
+}
+
+.shelf__month {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.shelf__name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: var(--ink-muted);
+  overflow-wrap: anywhere;
+}
+
+.shelf__item a:hover .shelf__name {
+  color: var(--ink);
+}
+
+.shelf__cover {
+  display: block;
+  width: 6.5rem;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border: 1px solid var(--frame);
+  box-shadow: var(--shadow-card);
+  background: var(--surface-muted);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.shelf__item a:hover .shelf__cover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* No cached cover: a spine-shaped placeholder keeps the row even. */
+.shelf__blank {
+  display: flex;
+  align-items: center;
+  width: 6.5rem;
+  aspect-ratio: 2 / 3;
+  padding: 0.4rem;
+  font-size: 0.65rem;
+  line-height: 1.25;
+  color: var(--ink-muted);
+  background: var(--surface-muted);
+  border: 1px solid var(--frame);
+  overflow: hidden;
+}
+
+.shelves {
+  display: grid;
+  gap: 2rem;
+}
+
+.section--shelves {
+  padding-block: 0 clamp(2rem, 4vw, 3rem);
+}
+
+@media (min-width: 60rem) {
+  .shelves {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+    gap: 2.5rem;
+  }
 }
 
 .definition {
@@ -861,12 +970,20 @@ h2 + .definition {
 
 .home-hero__text {
   grid-column: 1 / -1;
+  position: relative;
+  z-index: 1;
 }
 
 .home-hero__art {
   grid-column: 1 / -1;
   margin: 1.5rem 0 0;
 }
+
+.section--contact {
+  padding-block: clamp(1rem, 2vw, 1.75rem) 0;
+}
+
+
 
 .home-hero__art img {
   width: 100%;
@@ -884,16 +1001,11 @@ h2 + .definition {
 [data-user-color-scheme='dark'] .home-hero__art img { mix-blend-mode: normal; }
 [data-user-color-scheme='light'] .home-hero__art img { mix-blend-mode: multiply; }
 
-.home-hero__art figcaption {
-  font-size: var(--fs-small);
-  color: var(--ink-muted);
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  margin-top: 0.6rem;
-  text-align: center;
-}
-
 @media (min-width: 60rem) {
+  .section--hero {
+    position: relative;
+  }
+
   .section--hero .grid {
     align-items: start;
   }
@@ -904,16 +1016,30 @@ h2 + .definition {
   }
 
   .home-hero__art {
-    grid-column: 7 / -1;
-    grid-row: 1;
-    margin-top: 0;
+    position: absolute;
+    inset-block-start: -2rem;
+    inset-inline-end: var(--page-pad);
+    width: min(38rem, 46vw);
+    margin: 0;
+    pointer-events: none;
   }
 
   .home-hero__art img {
-    max-width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    opacity: 0.95;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 78%,
+      transparent 97%
+    );
+    mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 97%);
   }
 
-  .home-hero__art figcaption {
-    text-align: left;
+  .section--shelves,
+  .section--contact {
+    position: relative;
+    z-index: 1;
   }
 }

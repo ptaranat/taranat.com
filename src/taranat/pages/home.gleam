@@ -3,10 +3,11 @@ import lustre/element.{type Element}
 import lustre/element/html
 import taranat/email
 import taranat/layout
+import taranat/reading.{type Shelf}
 
 const description = "Software engineer and co-owner of Dungeon Books, a sci-fi and fantasy bookstore in Jersey City. I build distributed systems and tools for the indie-bookstore trade."
 
-pub fn view(assets: String) -> Element(Nil) {
+pub fn view(assets: String, shelves: List(Shelf)) -> Element(Nil) {
   layout.render(
     layout.Meta(
       title: "Panat Taranat",
@@ -16,7 +17,7 @@ pub fn view(assets: String) -> Element(Nil) {
       image: layout.default_og_image,
     ),
     assets,
-    [hero(), contact()],
+    [hero(), shelf_section(shelves), contact()],
   )
 }
 
@@ -49,7 +50,7 @@ fn hero() -> Element(Nil) {
             [html.text("Dungeon Books")],
           ),
           html.text(
-            ", a sci-fi and fantasy shop in Jersey City. I spent years building distributed systems and infrastructure, and I wanted to make something I could stand inside of. ",
+            ", a sci-fi and fantasy bookstore in Jersey City. We'd both spent years building software and wanted something we could stand inside of. ",
           ),
           proof_link(
             "https://www.indiebound.org/blog-posts/dungeon-books-jersey-citys-destination-sci-fi-fantasy-and-rpgs",
@@ -69,11 +70,11 @@ fn hero() -> Element(Nil) {
             "did",
           ),
           html.text(
-            ". I still code every day: software for the shop, and tools for booksellers. The rest of the week you'll find me behind the counter or running D&D nights in the back.",
+            ". I still code every day, for the shop and for booksellers. The rest of the week I'm behind the counter or running D&D in the back.",
           ),
         ]),
       ]),
-      html.figure([attribute.class("home-hero__art")], [
+      html.div([attribute.class("home-hero__art")], [
         html.picture([], [
           html.source([
             attribute.type_("image/webp"),
@@ -96,8 +97,15 @@ fn hero() -> Element(Nil) {
             attribute("loading", "eager"),
           ]),
         ]),
-        html.figcaption([], [html.text("Dungeon Books, Jersey City.")]),
       ]),
+    ]),
+  ])
+}
+
+fn shelf_section(shelves: List(Shelf)) -> Element(Nil) {
+  html.section([attribute.class("section section--shelves")], [
+    html.div([attribute.class("grid")], [
+      html.div([attribute.class("col-span-full")], [reading.view(shelves)]),
     ]),
   ])
 }
@@ -105,7 +113,7 @@ fn hero() -> Element(Nil) {
 fn contact() -> Element(Nil) {
   html.section([attribute.class("section section--contact")], [
     html.div([attribute.class("grid")], [
-      html.div([attribute.class("col-span-text")], [
+      html.div([attribute.class("col-span-full home-contact")], [
         html.h2([], [html.text("Get in touch")]),
         html.p([], [
           html.text(

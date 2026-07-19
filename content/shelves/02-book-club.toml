@@ -1,0 +1,54 @@
+title = "Monthly book club"
+
+# Picks from the monthly Sci-Fi & Fantasy book club, newest first. Titles and
+# authors come from the hi.events listings; ISBNs are the editions the shop
+# stocks, so the covers match what is on the shelf.
+
+[[book]]
+title = "Daughter of Crows"
+author = "Mark Lawrence"
+url = "https://www.dungeonbooks.com/product/daughter-of-crows-book-1-of-the-academy-of-kindness-by-mark-lawrence-hardcover-/UEY72ZWABXCFBC7HZYKSMDFZ"
+isbn = "9780593818947"
+month = "Jul 2026"
+
+[[book]]
+title = "Sublimation"
+author = "Isabel J. Kim"
+url = "https://www.dungeonbooks.com/product/sublimation-by-isabel-j-kim-hardcover-signed/3HRN5W3LAQUUIILNTU77D5QU"
+isbn = "9781250376794"
+month = "Jun 2026"
+
+[[book]]
+title = "Burn the Sea"
+author = "Mona Tewari"
+url = "https://www.dungeonbooks.com/product/burn-the-sea-by-mona-tewari-paperback-/6BLH3723VWADJVHV3XMDOEPG"
+isbn = "9781967967063"
+month = "May 2026"
+
+[[book]]
+title = "Blessed is the Rot"
+author = "Sheri Singerling"
+url = "https://www.dungeonbooks.com/product/blessed-is-the-rot-by-sheri-singerling-paperback-/5XCYQAWHIVKO4CA3PFLFNQIA"
+isbn = "9798991475266"
+month = "Apr 2026"
+
+[[book]]
+title = "The Poet Empress"
+author = "Shen Tao"
+url = "https://www.dungeonbooks.com/product/the-poet-empress-by-shen-tao-deluxe-edition-/DGDHKCSBKDW7DPVVJPUPZIX4"
+isbn = "9781250406828"
+month = "Mar 2026"
+
+[[book]]
+title = "The Tainted Cup"
+author = "Robert Jackson Bennett"
+url = "https://www.dungeonbooks.com/product/the-tainted-cup-book-1-of-3-ana-and-din-mysteries-by-robert-jackson-bennett-paperback-/554"
+isbn = "9781984820716"
+month = "Feb 2026"
+
+[[book]]
+title = "Saltcrop"
+author = "Yume Kitasei"
+url = "https://www.dungeonbooks.com/product/saltcrop-by-yume-kitasei-hardcover-/SHDDSGUBEE7B2NOCEABTYGVK"
+isbn = "9781250380968"
+month = "Jan 2026"

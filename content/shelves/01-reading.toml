@@ -1,0 +1,25 @@
+title = "What I'm reading"
+
+# Synced from Hardcover. Hand-edits survive until the next sync.
+#
+# isbn is optional and only set once the cover is cached at
+# assets.dungeonbooks.com/covers/raw/<isbn>.jpg, so a book without a cached
+# cover renders as text rather than a broken image.
+
+[[book]]
+title = "Die, Vol. 3: The Great Game"
+author = "Kieron Gillen"
+url = "https://hardcover.app/books/die-vol-3-the-great-game"
+isbn = "9781534317161"
+
+[[book]]
+title = "The Employees"
+author = "Olga Ravn"
+url = "https://hardcover.app/books/the-employees"
+isbn = "9780811234825"
+
+[[book]]
+title = "The Face in the Frost"
+author = "John Bellairs"
+url = "https://hardcover.app/books/the-face-in-the-frost"
+isbn = "9780441225316"

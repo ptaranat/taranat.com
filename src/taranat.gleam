@@ -13,6 +13,7 @@ import taranat/pages/meet
 import taranat/pages/not_found
 import taranat/pages/post_page
 import taranat/post.{type Post}
+import taranat/reading
 import taranat/syndication
 
 fn add_post_routes(
@@ -49,11 +50,12 @@ pub fn main() {
 pub fn build() -> Bool {
   let posts = post.published(post.load_all())
   let assets = assets.digest()
+  let shelves = reading.load()
 
   let config =
     ssg.new("./dist")
     |> ssg.add_static_dir("public")
-    |> ssg.add_static_route("/", home.view(assets))
+    |> ssg.add_static_route("/", home.view(assets, shelves))
     |> ssg.add_static_route("/about", about.view(assets))
     |> ssg.add_static_route("/blog", blog.view(posts, assets))
     |> ssg.add_static_route("/meet", meet.view(assets))
