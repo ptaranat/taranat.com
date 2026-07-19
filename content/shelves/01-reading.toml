@@ -24,3 +24,24 @@ title = "The Face in the Frost"
 author = "John Bellairs"
 url = "https://www.dungeonbooks.com/product/the-face-in-the-frost-by-john-bellairs-paperback-/777"
 isbn = "9780441225316"
+
+[[book]]
+title = "Die, Vol. 2: Split the Party"
+author = "Kieron Gillen"
+url = "https://bookshop.org/a/108216/9781534314979"
+isbn = "9781534314979"
+month = "Jul 2026"
+
+[[book]]
+title = "Die, Vol. 1: Fantasy Heartbreaker"
+author = "Kieron Gillen"
+url = "https://bookshop.org/a/108216/9781534312708"
+isbn = "9781534312708"
+month = "Jul 2026"
+
+[[book]]
+title = "Between Two Fires"
+author = "Christopher Buehlman"
+url = "https://bookshop.org/a/108216/9781250439215"
+isbn = "9781250439215"
+month = "May 2026"

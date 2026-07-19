@@ -407,6 +407,10 @@
   gap: 2rem;
 }
 
+.shelf {
+  min-width: 0;
+}
+
 .section .shelf__title {
   font-size: var(--fs-h3);
   margin: 0 0 0.9rem;
@@ -415,9 +419,20 @@
 .shelf__row {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
   gap: 0.9rem 0.75rem;
   align-items: flex-start;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  padding-bottom: 0.5rem;
+  overscroll-behavior-x: contain;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .shelf__row {
+    scroll-behavior: smooth;
+  }
 }
 
 .shelf__item a,
@@ -427,7 +442,9 @@
 }
 
 .shelf__item {
+  flex: 0 0 auto;
   width: 6.5rem;
+  scroll-snap-align: start;
 }
 
 .shelf__caption {
@@ -502,8 +519,7 @@
 
 @media (min-width: 60rem) {
   .shelves {
-    grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
-    gap: 2.5rem;
+    gap: 1.75rem;
   }
 }
 
