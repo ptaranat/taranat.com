@@ -61,7 +61,11 @@ fn hero() -> Element(Nil) {
           ),
           ext_link("https://dungeonbooks.com", "Dungeon Books"),
           html.text(
-            ", a sci-fi and fantasy bookstore we opened in Jersey City in 2024. Carrie came from a career in bookselling; I came in with a background in software and a personal collection that had been slowly taking over my apartment.",
+            ", a sci-fi and fantasy bookstore we opened in Jersey City in 2024. Carrie was a software engineer, then an ",
+          ),
+          ext_link("https://carrievu.com", "actor"),
+          html.text(
+            ", then sold books. I was a software engineer with a collection of sci-fi and fantasy paperback books that had been slowly taking over my apartment.",
           ),
         ]),
         html.p([], [
@@ -91,14 +95,8 @@ fn colophon() -> Element(Nil) {
         ),
         html.p([], [
           html.text(
-            "This site is a small Gleam program that writes HTML files. ",
+            "This site is a small Gleam program that writes HTML files. There is no framework and nothing running on a server. The CSS is hand-written, and the only JavaScript is three short files: the theme toggle, the email link, and the copy buttons on code blocks. The source is on ",
           ),
-          html.text(
-            "There is no framework and nothing running on a server. The CSS is hand-written, and the only JavaScript is three short files: the theme toggle, the email link, and the copy buttons on code blocks.",
-          ),
-        ]),
-        html.p([], [
-          html.text("The source is on "),
           ext_link("https://github.com/ptaranat/taranat.com", "GitHub"),
           html.text("."),
         ]),
@@ -216,29 +214,29 @@ fn elsewhere() -> Element(Nil) {
       html.div([attribute.class("col-span-text")], [
         html.h2([], [html.text("Elsewhere")]),
         html.ul([attribute.class("about-interests")], [
-          interest("Reading.", [
+          interest("Reading", [
             ext_link("https://hardcover.app/@panat", "hardcover.app/@panat"),
           ]),
-          interest("Boardgames.", [
+          interest("Boardgames", [
             ext_link(
               "https://kallax.io/u/PXNGH-Panat",
               "kallax.io/u/PXNGH-Panat",
             ),
           ]),
-          interest("Music.", [
+          interest("Music", [
             ext_link(
               "https://www.last.fm/user/ptaranat",
               "last.fm/user/ptaranat",
             ),
           ]),
-          interest("Code.", [
+          interest("Code", [
             ext_link("https://github.com/ptaranat", "ptaranat"),
             html.text(", "),
             ext_link("https://github.com/script-wizards", "script-wizards"),
             html.text(", "),
             ext_link("https://github.com/dungeonbooks", "dungeonbooks"),
           ]),
-          interest("Social.", [
+          interest("Social", [
             ext_link("https://x.com/ptaranat", "x.com/ptaranat"),
             html.text(", "),
             ext_link(
