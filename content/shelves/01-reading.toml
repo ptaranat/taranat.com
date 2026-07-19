@@ -1,6 +1,7 @@
 title = "What I'm reading"
 
-# Synced from Hardcover. Hand-edits survive until the next sync.
+# url is hand-picked, in order of preference: dungeonbooks.com if we stock it,
+# then a bookshop.org affiliate link, then hardcover.app with referrer_id=148.
 #
 # isbn is optional and only set once the cover is cached at
 # assets.dungeonbooks.com/covers/raw/<isbn>.jpg, so a book without a cached
@@ -9,17 +10,17 @@ title = "What I'm reading"
 [[book]]
 title = "Die, Vol. 3: The Great Game"
 author = "Kieron Gillen"
-url = "https://hardcover.app/books/die-vol-3-the-great-game"
+url = "https://bookshop.org/a/108216/9781534317161"
 isbn = "9781534317161"
 
 [[book]]
 title = "The Employees"
 author = "Olga Ravn"
-url = "https://hardcover.app/books/the-employees"
+url = "https://bookshop.org/a/108216/9780811234825"
 isbn = "9780811234825"
 
 [[book]]
 title = "The Face in the Frost"
 author = "John Bellairs"
-url = "https://hardcover.app/books/the-face-in-the-frost"
+url = "https://www.dungeonbooks.com/product/the-face-in-the-frost-by-john-bellairs-paperback-/777"
 isbn = "9780441225316"

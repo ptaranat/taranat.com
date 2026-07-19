@@ -71,7 +71,7 @@ fn hero() -> Element(Nil) {
         html.p([], [
           html.text("The idea came from "),
           ext_link(
-            "https://hardcover.app/@panat/lists/appendix-n-inspirational-and-educational-reading",
+            "https://hardcover.app/@panat/lists/appendix-n-inspirational-and-educational-reading?referrer_id=148",
             "Appendix N",
           ),
           html.text(
@@ -215,7 +215,10 @@ fn elsewhere() -> Element(Nil) {
         html.h2([], [html.text("Elsewhere")]),
         html.ul([attribute.class("about-interests")], [
           interest("Reading", [
-            ext_link("https://hardcover.app/@panat", "hardcover.app/@panat"),
+            ext_link(
+              "https://hardcover.app/@panat?referrer_id=148",
+              "hardcover.app/@panat",
+            ),
           ]),
           interest("Boardgames", [
             ext_link(
