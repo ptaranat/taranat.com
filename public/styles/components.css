@@ -1038,19 +1038,61 @@ h2 + .definition {
     width: min(38rem, 46vw);
     margin: 0;
     pointer-events: none;
+    /* The sides run longer: the washes bleed to both side borders, while the
+       top and bottom meet blank paper. */
+    --art-feather: 3rem;
+    --art-feather-side: 7rem;
+    --art-mask-x-src: linear-gradient(
+      to right,
+      transparent 0,
+      rgb(0 0 0 / 0.15) calc(var(--art-feather-side) * 0.3),
+      rgb(0 0 0 / 0.55) calc(var(--art-feather-side) * 0.6),
+      #000 var(--art-feather-side),
+      #000 calc(100% - var(--art-feather-side)),
+      rgb(0 0 0 / 0.55) calc(100% - var(--art-feather-side) * 0.6),
+      rgb(0 0 0 / 0.15) calc(100% - var(--art-feather-side) * 0.3),
+      transparent 100%
+    );
+    --art-mask-y-src: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 var(--art-feather),
+      #000 calc(100% - var(--art-feather)),
+      transparent 100%
+    );
+    /* Day mode only; night mode switches these to none below. */
+    --art-mask-x: var(--art-mask-x-src);
+    --art-mask-y: var(--art-mask-y-src);
+    -webkit-mask-image: var(--art-mask-x);
+    mask-image: var(--art-mask-x);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .home-hero__art {
+      --art-mask-x: none;
+      --art-mask-y: none;
+    }
+  }
+
+  [data-user-color-scheme='dark'] .home-hero__art {
+    --art-mask-x: none;
+    --art-mask-y: none;
+  }
+
+  [data-user-color-scheme='light'] .home-hero__art {
+    --art-mask-x: var(--art-mask-x-src);
+    --art-mask-y: var(--art-mask-y-src);
   }
 
   .home-hero__art img {
     max-width: none;
     margin-inline: 0;
     opacity: 0.95;
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      #000 0%,
-      #000 78%,
-      transparent 97%
-    );
-    mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 97%);
+    /* Vertical half of the feather; the wrapper carries the horizontal half.
+       One gradient per element avoids mask-composite, which some browsers
+       ignore, unioning the masks and cancelling the fade. */
+    -webkit-mask-image: var(--art-mask-y);
+    mask-image: var(--art-mask-y);
   }
 
   .section--shelves,
