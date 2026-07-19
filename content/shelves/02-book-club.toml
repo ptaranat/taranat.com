@@ -1,8 +1,7 @@
 title = "Monthly book club"
 
-# Picks from the monthly Sci-Fi & Fantasy book club, newest first. Titles and
-# authors come from the hi.events listings; ISBNs are the editions the shop
-# stocks, so the covers match what is on the shelf.
+# Picks from the monthly Sci-Fi & Fantasy book club, newest first.
+# isbn picks the cover, url picks where to buy. They can differ.
 
 [[book]]
 title = "Daughter of Crows"
