@@ -50,7 +50,7 @@ fn hero() -> Element(Nil) {
             [html.text("Dungeon Books")],
           ),
           html.text(
-            ", a sci-fi and fantasy bookstore in Jersey City. We'd both spent years building software and wanted something we could stand inside of. ",
+            ", a sci-fi and fantasy bookstore in Jersey City. We'd both spent years building software and we wanted to build something we could stand inside of. ",
           ),
           proof_link(
             "https://www.indiebound.org/blog-posts/dungeon-books-jersey-citys-destination-sci-fi-fantasy-and-rpgs",
