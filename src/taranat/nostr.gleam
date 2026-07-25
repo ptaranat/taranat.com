@@ -7,7 +7,11 @@ pub const pubkey = "d4c6bcf9c4cf1d49a9768db7acb48a8d6704bbea309a696905a9848e4010
 /// "_" is the root identifier: clients display _@taranat.com as taranat.com.
 const names = ["_", "panat"]
 
-const relays = ["wss://relay.damus.io", "wss://nos.lol", "wss://relay.primal.net"]
+const relays = [
+  "wss://nostr.mom", "wss://relay.primal.net", "wss://offchain.pub",
+  "wss://relay.damus.io", "wss://wot.nostr.party", "wss://wot.utxo.one",
+  "wss://nostr.win",
+]
 
 pub fn well_known_json() -> String {
   let name_entries =
