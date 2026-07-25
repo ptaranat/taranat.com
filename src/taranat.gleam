@@ -6,6 +6,7 @@ import lustre/element
 import lustre/ssg
 import simplifile
 import taranat/assets
+import taranat/nostr
 import taranat/pages/about
 import taranat/pages/blog
 import taranat/pages/home
@@ -61,6 +62,7 @@ pub fn build() -> Bool {
     |> ssg.add_static_route("/meet", meet.view(assets))
     |> add_post_routes(posts, assets)
     |> ssg.add_static_asset("/robots.txt", syndication.robots_txt())
+    |> ssg.add_static_asset("/.well-known/nostr.json", nostr.well_known_json())
     |> ssg.add_static_asset("/sitemap.xml", syndication.sitemap_xml(posts))
     |> ssg.add_static_asset("/feed.xml", syndication.feed_xml(posts))
     |> ssg.add_static_asset(
