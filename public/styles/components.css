@@ -73,14 +73,18 @@
 
 .site-nav-wrapper > .site-nav { display: none; }
 
+/* A panel hanging off the toggle, with its right edge on the page gutter,
+   rather than a full-width shelf. */
 .site-nav-wrapper[open] > .site-nav {
   display: block;
   position: absolute;
-  left: 0;
-  right: 0;
   top: 100%;
-  border-bottom: 1px solid var(--chrome-rule);
-  padding: 1rem var(--page-pad) 1.25rem;
+  right: var(--page-pad);
+  min-width: 11rem;
+  border: 1px solid var(--chrome-rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow-card);
+  padding: 0.875rem 1.125rem;
   z-index: 5;
 }
 
@@ -125,6 +129,9 @@
     position: static;
     background: transparent;
     border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    min-width: 0;
     padding: 0;
   }
   .site-nav ul {
