@@ -1,4 +1,4 @@
-import lustre/attribute.{attribute}
+import lustre/attribute
 import lustre/element.{type Element}
 import lustre/element/html
 import taranat/layout
@@ -27,26 +27,16 @@ fn hero() -> Element(Nil) {
     html.div([attribute.class("grid")], [
       html.div([attribute.class("about-lead")], [
         html.figure([attribute.class("about-hero__photo")], [
-          html.picture([], [
-            html.source([
-              attribute.type_("image/webp"),
-              attribute.srcset(
-                "/assets/panat-watercolor-400.webp 400w, /assets/panat-watercolor-736.webp 736w",
-              ),
-              attribute("sizes", "26rem"),
-            ]),
-            html.img([
-              attribute.src("/assets/panat-watercolor-736.jpg"),
-              attribute.srcset(
-                "/assets/panat-watercolor-400.jpg 400w, /assets/panat-watercolor-736.jpg 736w",
-              ),
-              attribute("sizes", "26rem"),
-              attribute.alt("Watercolor portrait of Panat Taranat"),
-              attribute("width", "736"),
-              attribute("height", "736"),
-              attribute("loading", "eager"),
-            ]),
-          ]),
+          ui.responsive_image(ui.Image(
+            base: "/assets/panat-watercolor",
+            widths: [400, 736],
+            format: "jpg",
+            sizes: "26rem",
+            alt: "Watercolor portrait of Panat Taranat",
+            width: 736,
+            height: 736,
+            loading: ui.Eager,
+          )),
         ]),
         html.h1([attribute.class("display")], [html.text("About")]),
         html.p([attribute.class("lede")], [
@@ -109,28 +99,16 @@ fn bookstore() -> Element(Nil) {
   html.section([attribute.class("section")], [
     html.div([attribute.class("grid")], [
       html.figure([attribute.class("about-figure")], [
-        html.picture([], [
-          html.source([
-            attribute.type_("image/webp"),
-            attribute.srcset(
-              "/assets/dungeonbooks-shelves-800.webp 800w, /assets/dungeonbooks-shelves-1500.webp 1500w",
-            ),
-            attribute("sizes", "(min-width: 60rem) 65rem, 100vw"),
-          ]),
-          html.img([
-            attribute.src("/assets/dungeonbooks-shelves-1500.jpg"),
-            attribute.srcset(
-              "/assets/dungeonbooks-shelves-800.jpg 800w, /assets/dungeonbooks-shelves-1500.jpg 1500w",
-            ),
-            attribute("sizes", "(min-width: 60rem) 65rem, 100vw"),
-            attribute.alt(
-              "Shelves of sci-fi and fantasy novels and RPG books inside Dungeon Books",
-            ),
-            attribute("width", "1500"),
-            attribute("height", "1000"),
-            attribute("loading", "lazy"),
-          ]),
-        ]),
+        ui.responsive_image(ui.Image(
+          base: "/assets/dungeonbooks-shelves",
+          widths: [800, 1500],
+          format: "jpg",
+          sizes: "(min-width: 60rem) 65rem, 100vw",
+          alt: "Shelves of sci-fi and fantasy novels and RPG books inside Dungeon Books",
+          width: 1500,
+          height: 1000,
+          loading: ui.Lazy,
+        )),
         html.figcaption([], [html.text("Inside the shop.")]),
       ]),
       html.div([attribute.class("col-span-text")], [
@@ -172,28 +150,16 @@ fn bookstore() -> Element(Nil) {
         ]),
       ]),
       html.figure([attribute.class("about-figure")], [
-        html.picture([], [
-          html.source([
-            attribute.type_("image/webp"),
-            attribute.srcset(
-              "/assets/panat-carrie-storefront-800.webp 800w, /assets/panat-carrie-storefront-1280.webp 1280w",
-            ),
-            attribute("sizes", "(min-width: 60rem) 65rem, 100vw"),
-          ]),
-          html.img([
-            attribute.src("/assets/panat-carrie-storefront-1280.jpg"),
-            attribute.srcset(
-              "/assets/panat-carrie-storefront-800.jpg 800w, /assets/panat-carrie-storefront-1280.jpg 1280w",
-            ),
-            attribute("sizes", "(min-width: 60rem) 65rem, 100vw"),
-            attribute.alt(
-              "Panat and Carrie holding a giant d20 in front of the Dungeon Books storefront",
-            ),
-            attribute("width", "1280"),
-            attribute("height", "853"),
-            attribute("loading", "lazy"),
-          ]),
-        ]),
+        ui.responsive_image(ui.Image(
+          base: "/assets/panat-carrie-storefront",
+          widths: [800, 1280],
+          format: "jpg",
+          sizes: "(min-width: 60rem) 65rem, 100vw",
+          alt: "Panat and Carrie holding a giant d20 in front of the Dungeon Books storefront",
+          width: 1280,
+          height: 853,
+          loading: ui.Lazy,
+        )),
         html.figcaption([], [
           html.text(
             "Panat and Carrie out front. Dungeon Books, Jersey City, opened 2024.",
