@@ -1,7 +1,7 @@
-import gleam/int
 import gleam/list
 import gleam/string
 import lustre/element
+import taranat/date
 import taranat/layout
 import taranat/post.{type Post}
 
@@ -47,7 +47,7 @@ pub fn feed_xml(posts: List(Post)) -> String {
 
   let last_build = case posts {
     [newest, ..] ->
-      "    <lastBuildDate>" <> rfc822(newest.date) <> "</lastBuildDate>\n"
+      "    <lastBuildDate>" <> date.rfc822(newest.date) <> "</lastBuildDate>\n"
     [] -> ""
   }
 
@@ -86,7 +86,7 @@ fn item(p: Post) -> String {
   <> xml_escape(link)
   <> "</guid>\n"
   <> "      <pubDate>"
-  <> rfc822(p.date)
+  <> date.rfc822(p.date)
   <> "</pubDate>\n"
   <> "      <description>"
   <> cdata(description)
@@ -105,75 +105,4 @@ fn xml_escape(text: String) -> String {
 
 fn cdata(text: String) -> String {
   "<![CDATA[" <> string.replace(text, "]]>", "]]]]><![CDATA[>") <> "]]>"
-}
-
-fn rfc822(iso: String) -> String {
-  case parse_date(iso) {
-    Ok(#(year, month, day)) ->
-      day_of_week(year, month, day)
-      <> ", "
-      <> pad2(day)
-      <> " "
-      <> month_abbrev(month)
-      <> " "
-      <> int.to_string(year)
-      <> " 00:00:00 GMT"
-    Error(_) -> iso
-  }
-}
-
-fn parse_date(iso: String) -> Result(#(Int, Int, Int), Nil) {
-  case string.split(iso, "-") {
-    [year, month, day] ->
-      case int.parse(year), int.parse(month), int.parse(day) {
-        Ok(y), Ok(m), Ok(d) -> Ok(#(y, m, d))
-        _, _, _ -> Error(Nil)
-      }
-    _ -> Error(Nil)
-  }
-}
-
-/// Zeller's congruence.
-fn day_of_week(year: Int, month: Int, day: Int) -> String {
-  let #(m, y) = case month < 3 {
-    True -> #(month + 12, year - 1)
-    False -> #(month, year)
-  }
-  let k = y % 100
-  let j = y / 100
-  let h = { day + { 13 * { m + 1 } } / 5 + k + k / 4 + j / 4 + 5 * j } % 7
-
-  case h {
-    0 -> "Sat"
-    1 -> "Sun"
-    2 -> "Mon"
-    3 -> "Tue"
-    4 -> "Wed"
-    5 -> "Thu"
-    _ -> "Fri"
-  }
-}
-
-fn pad2(value: Int) -> String {
-  case value < 10 {
-    True -> "0" <> int.to_string(value)
-    False -> int.to_string(value)
-  }
-}
-
-fn month_abbrev(month: Int) -> String {
-  case month {
-    1 -> "Jan"
-    2 -> "Feb"
-    3 -> "Mar"
-    4 -> "Apr"
-    5 -> "May"
-    6 -> "Jun"
-    7 -> "Jul"
-    8 -> "Aug"
-    9 -> "Sep"
-    10 -> "Oct"
-    11 -> "Nov"
-    _ -> "Dec"
-  }
 }
