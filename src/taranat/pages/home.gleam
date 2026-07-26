@@ -4,6 +4,7 @@ import lustre/element/html
 import taranat/email
 import taranat/layout
 import taranat/reading.{type Shelf}
+import taranat/ui
 
 const description = "Software engineer and co-owner of Dungeon Books, a sci-fi and fantasy bookstore in Jersey City. I build distributed systems and tools for the indie-bookstore trade."
 
@@ -75,28 +76,16 @@ fn hero() -> Element(Nil) {
         ]),
       ]),
       html.div([attribute.class("home-hero__art")], [
-        html.picture([], [
-          html.source([
-            attribute.type_("image/webp"),
-            attribute.srcset(
-              "/assets/storefront-watercolor-800.webp 800w, /assets/storefront-watercolor-1400.webp 1400w",
-            ),
-            attribute("sizes", "(min-width: 60rem) 40vw, 22rem"),
-          ]),
-          html.img([
-            attribute.src("/assets/storefront-watercolor-800.jpg"),
-            attribute.srcset(
-              "/assets/storefront-watercolor-800.jpg 800w, /assets/storefront-watercolor-1400.jpg 1400w",
-            ),
-            attribute("sizes", "(min-width: 60rem) 40vw, 22rem"),
-            attribute.alt(
-              "Watercolor painting of the Dungeon Books storefront: a wizard-and-book sign in the window, an A-frame chalkboard on the sidewalk, and a 'Come in, we're open' sign on the door",
-            ),
-            attribute("width", "1500"),
-            attribute("height", "2000"),
-            attribute("loading", "eager"),
-          ]),
-        ]),
+        ui.responsive_image(ui.Image(
+          base: "/assets/storefront-watercolor",
+          widths: [800, 1400],
+          format: "jpg",
+          sizes: "(min-width: 60rem) 40vw, 22rem",
+          alt: "Watercolor painting of the Dungeon Books storefront: a wizard-and-book sign in the window, an A-frame chalkboard on the sidewalk, and a 'Come in, we're open' sign on the door",
+          width: 1500,
+          height: 2000,
+          loading: ui.Eager,
+        )),
       ]),
     ]),
   ])
