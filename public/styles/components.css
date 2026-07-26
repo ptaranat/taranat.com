@@ -1,12 +1,19 @@
 /* Site chrome ------------------------------------------------------------ */
 
-.site-header {
-  border-bottom: 1px solid var(--chrome-rule);
-  padding-block: 0.625rem;
+/* The noise is what separates chrome from flat --chrome-bg; anything painted
+   as chrome needs both layers or it reads darker than its neighbours. */
+.site-header,
+.site-footer,
+.site-nav-wrapper[open] > .site-nav {
   background-color: var(--chrome-bg);
   background-image: var(--chrome-noise);
   background-repeat: repeat;
   background-size: 180px 180px;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--chrome-rule);
+  padding-block: 0.625rem;
   color: var(--chrome-ink);
   position: relative;
 }
@@ -72,7 +79,6 @@
   left: 0;
   right: 0;
   top: 100%;
-  background: var(--chrome-bg);
   border-bottom: 1px solid var(--chrome-rule);
   padding: 1rem var(--page-pad) 1.25rem;
   z-index: 5;
@@ -165,10 +171,6 @@
   border-top: 1px solid var(--chrome-rule);
   padding-block: 1.5rem;
   margin-top: 4rem;
-  background-color: var(--chrome-bg);
-  background-image: var(--chrome-noise);
-  background-repeat: repeat;
-  background-size: 180px 180px;
   color: var(--chrome-ink-muted);
   font-size: var(--fs-small);
 }
