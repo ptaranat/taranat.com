@@ -63,6 +63,15 @@ pub fn index(iso: String) -> String {
   }
 }
 
+/// `2026-05-02T00:00:00Z`. Open Graph wants a full date-time, and posts carry
+/// only a date, so midnight UTC stands in.
+pub fn iso8601(iso: String) -> String {
+  case parse(iso) {
+    Ok(_) -> iso <> "T00:00:00Z"
+    Error(_) -> ""
+  }
+}
+
 /// `Sat, 02 May 2026 00:00:00 GMT`, as RSS wants it. Posts carry a date but no
 /// time, so midnight UTC stands in.
 pub fn rfc822(iso: String) -> String {

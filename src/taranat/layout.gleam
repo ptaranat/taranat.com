@@ -16,6 +16,8 @@ pub type Meta {
     path: String,
     kind: String,
     image: String,
+    /// ISO 8601 date-time, on articles only.
+    published: String,
   )
 }
 
@@ -183,6 +185,12 @@ fn head_element(meta: Meta, assets: String) -> Element(msg) {
         html.meta([
           attribute.name("twitter:description"),
           attribute.content(meta.description),
+        ]),
+      ]),
+      when(meta.published != "", [
+        html.meta([
+          attribute("property", "article:published_time"),
+          attribute.content(meta.published),
         ]),
       ]),
       [

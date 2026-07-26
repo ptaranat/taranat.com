@@ -1,6 +1,7 @@
 import gleam/int
 import gleam/io
 import gleam/list
+import gleam/option.{type Option, None}
 import gleam/string
 import lustre/element
 import lustre/ssg
@@ -22,9 +23,31 @@ fn add_post_routes(
   posts: List(Post),
   assets: String,
 ) -> ssg.Config(ssg.HasStaticRoutes, dir, index) {
-  list.fold(posts, config, fn(acc, p) {
-    ssg.add_static_route(acc, "/blog/" <> p.slug, post_page.view(p, assets))
-  })
+  use acc, #(p, newer, older) <- list.fold(with_neighbours(posts), config)
+  ssg.add_static_route(
+    acc,
+    "/blog/" <> p.slug,
+    post_page.view(post: p, newer: newer, older: older, assets: assets),
+  )
+}
+
+/// Posts arrive newest first, so the previous entry is the newer one.
+fn with_neighbours(
+  posts: List(Post),
+) -> List(#(Post, Option(Post), Option(Post))) {
+  use p, index <- list.index_map(posts)
+  #(p, at(posts, index - 1), at(posts, index + 1))
+}
+
+fn at(posts: List(Post), index: Int) -> Option(Post) {
+  case index < 0 {
+    True -> None
+    False ->
+      posts
+      |> list.drop(index)
+      |> list.first
+      |> option.from_result
+  }
 }
 
 fn strip_runtime_markers() -> Nil {
