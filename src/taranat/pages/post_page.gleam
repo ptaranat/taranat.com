@@ -1,6 +1,7 @@
 import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 import lustre/element/html
+import taranat/date
 import taranat/layout
 import taranat/post.{type Post}
 
@@ -38,7 +39,7 @@ fn header(p: Post) -> Element(Nil) {
     html.h1([attribute.class("display")], [html.text(p.title)]),
     html.time(
       [attribute.class("post-header__date"), attribute("datetime", p.date)],
-      [html.text(post.format_date(p.date))],
+      [html.text(date.long(p.date))],
     ),
   ])
 }
