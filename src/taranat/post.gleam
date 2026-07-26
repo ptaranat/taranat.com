@@ -1,7 +1,10 @@
 import gleam/dict.{type Dict}
+import gleam/int
 import gleam/list
 import gleam/option.{type Option}
+import gleam/pair
 import gleam/result
+import gleam/set.{type Set}
 import gleam/string
 import lustre/attribute.{attribute}
 import lustre/element.{type Element}
@@ -9,8 +12,8 @@ import lustre/element/html
 import mork
 import mork/document.{
   type Block, type Destination, type Document, type Inline, Absolute, Anchor,
-  Code, CodeSpan, Document, Emphasis, FullImage, FullLink, Highlight, Paragraph,
-  Relative, SoftBreak, Strikethrough, Strong, Text,
+  Code, CodeSpan, Document, Emphasis, FullImage, FullLink, Heading, Highlight,
+  Paragraph, Relative, SoftBreak, Strikethrough, Strong, Text,
 }
 import mork/to_lustre
 import simplifile
@@ -180,6 +183,7 @@ fn render(markdown: String) -> List(Element(Nil)) {
   let doc = mork.parse_with_options(options(), markdown)
 
   doc.blocks
+  |> identify_headings
   |> chunk
   |> list.flat_map(fn(chunk) {
     case chunk {
@@ -188,6 +192,71 @@ fn render(markdown: String) -> List(Element(Nil)) {
       BlockChunk(blocks) -> to_lustre.to_lustre(Document(..doc, blocks: blocks))
     }
   })
+}
+
+/// mork only fills in a heading id when the source writes one, so sections
+/// get slugs here and become linkable.
+pub fn identify_headings(blocks: List(Block)) -> List(Block) {
+  blocks
+  |> list.fold(#([], set.new()), fn(state, block) {
+    let #(done, taken) = state
+    case block {
+      Heading(level, "", raw, inlines) -> {
+        let #(id, taken) = unique_slug(slug(inline_text(inlines)), taken)
+        #([Heading(level, id, raw, inlines), ..done], taken)
+      }
+      // An id written in the source claims that slug before any auto one.
+      Heading(_, id, _, _) -> #([block, ..done], set.insert(taken, id))
+      _ -> #([block, ..done], taken)
+    }
+  })
+  |> pair.first
+  |> list.reverse
+}
+
+fn unique_slug(slug: String, taken: Set(String)) -> #(String, Set(String)) {
+  // A heading whose text is all punctuation would otherwise be named "-1".
+  let base = case slug {
+    "" -> "section"
+    text -> text
+  }
+  free_id(base, base, 1, taken)
+}
+
+fn free_id(
+  base: String,
+  candidate: String,
+  suffix: Int,
+  taken: Set(String),
+) -> #(String, Set(String)) {
+  case set.contains(taken, candidate) {
+    True ->
+      free_id(base, base <> "-" <> int.to_string(suffix), suffix + 1, taken)
+    False -> #(candidate, set.insert(taken, candidate))
+  }
+}
+
+pub fn slug(text: String) -> String {
+  text
+  |> string.lowercase
+  |> string.to_graphemes
+  |> list.map(fn(character) {
+    case character {
+      // Dropped rather than separated, so "there's" does not become "there-s".
+      "'" | "\u{2019}" -> ""
+      _ ->
+        case
+          string.contains("abcdefghijklmnopqrstuvwxyz0123456789", character)
+        {
+          True -> character
+          False -> "-"
+        }
+    }
+  })
+  |> string.concat
+  |> string.split("-")
+  |> list.filter(fn(part) { part != "" })
+  |> string.join("-")
 }
 
 type Chunk {
