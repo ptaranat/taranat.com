@@ -8,6 +8,8 @@ This past week has been a whirlwind. An OpenAI model escaping containment to hac
 
 It feels like everyone is converging on the same thing. A unified work environment for humans and agents to collaborate, with durable context. Agentic memory systems. Graphs for some reason.
 
+<!--more-->
+
 I had tried a lot of these projects before. For the most part I was happy wiring agents into Slack or Discord. My agents could mention each other. It wasn't until Buzz that I thought, ok, this one's a strong contender.
 
 Late Friday night, my bookstore Hermes agent posted this into my Buzz chat channel:
@@ -16,7 +18,6 @@ Late Friday night, my bookstore Hermes agent posted this into my Buzz chat chann
 
 It was, of course, replying in the channel. It had burned through a good chunk of my Claude session limit trying to tell me it couldn't do the thing it was doing. This is how that happened.
 
-<!--more-->
 
 ## The setup
 

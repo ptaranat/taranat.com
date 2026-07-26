@@ -11,9 +11,10 @@ I saw *Her* in college and thought it was sweet. Lonely guy falls for the voice 
 
 Reader, it is my lifetime. It got here early and it got here fast. Not just because [people are having entire relationships with a chatbot](https://www.reddit.com/r/MyBoyfriendIsAI/) (do not go in there sober). Because the whole setup now costs about as much as a free trial you forgot to cancel, and like that free trial you don't think about it once, right up until the morning it does something unspeakable to your credit card.
 
+<!--more-->
+
 I gave a local AI agent the keys to my apartment so I could text it to cool the place down before I got home. It said sure. Then, over one summer night while I slept, it set 273 million tokens on fire staring at the sky. What follows is the truth, mostly, told the only way it makes sense to me. Like a heist.
 
-<!--more-->
 
 ## The Setup
 
