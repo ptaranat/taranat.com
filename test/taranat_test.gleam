@@ -1,5 +1,7 @@
+import gleam/list
 import gleeunit
 import gleeunit/should
+import mork/document.{type Block, Heading, Text}
 import taranat/date
 import taranat/image
 import taranat/post
@@ -144,6 +146,49 @@ pub fn absolutize_test() {
   // Text after the attribute is left intact.
   syndication.absolutize("<a href=\"/x\">a, b</a>")
   |> should.equal("<a href=\"https://taranat.com/x\">a, b</a>")
+}
+
+pub fn slug_test() {
+  post.slug("The NDA Red Flag")
+  |> should.equal("the-nda-red-flag")
+
+  post.slug("Update: there\u{2019}s a better way")
+  |> should.equal("update-theres-a-better-way")
+
+  post.slug("  .NET  BS  ")
+  |> should.equal("net-bs")
+
+  post.slug("Update: there's a better way")
+  |> should.equal("update-theres-a-better-way")
+
+  post.slug("!!!")
+  |> should.equal("")
+}
+
+fn heading(text: String, id: String) -> Block {
+  Heading(2, id, "", [Text(text)])
+}
+
+fn heading_ids(blocks: List(Block)) -> List(String) {
+  use block <- list.filter_map(post.identify_headings(blocks))
+  case block {
+    Heading(_, id, _, _) -> Ok(id)
+    _ -> Error(Nil)
+  }
+}
+
+pub fn heading_id_test() {
+  // Repeated titles are suffixed rather than colliding.
+  heading_ids([heading("The setup", ""), heading("The setup", "")])
+  |> should.equal(["the-setup", "the-setup-1"])
+
+  // An id written in the source is claimed, so a later auto slug avoids it.
+  heading_ids([heading("anything", "the-setup"), heading("The setup", "")])
+  |> should.equal(["the-setup", "the-setup-1"])
+
+  // Headings that slug to nothing get a name instead of a bare suffix.
+  heading_ids([heading("!!!", ""), heading("???", "")])
+  |> should.equal(["section", "section-1"])
 }
 
 pub fn unquote_test() {
