@@ -3,6 +3,7 @@ import gleeunit/should
 import taranat/date
 import taranat/image
 import taranat/post
+import taranat/syndication
 
 pub fn main() {
   gleeunit.main()
@@ -113,6 +114,36 @@ pub fn malformed_date_test() {
 
   date.long("2000-02-29")
   |> should.equal("February 29, 2000")
+}
+
+pub fn absolutize_test() {
+  syndication.absolutize(
+    "<a href=\"/blog/bicycle\"><img src=\"/assets/a.jpg\"></a>",
+  )
+  |> should.equal(
+    "<a href=\"https://taranat.com/blog/bicycle\"><img src=\"https://taranat.com/assets/a.jpg\"></a>",
+  )
+
+  // Absolute and anchor URLs are left alone.
+  syndication.absolutize("<a href=\"https://example.com/x\">x</a>")
+  |> should.equal("<a href=\"https://example.com/x\">x</a>")
+
+  syndication.absolutize("<a href=\"#notes\">notes</a>")
+  |> should.equal("<a href=\"#notes\">notes</a>")
+
+  // Protocol-relative URLs already carry a host.
+  syndication.absolutize("<img src=\"//cdn.example.com/x.jpg\">")
+  |> should.equal("<img src=\"//cdn.example.com/x.jpg\">")
+
+  // Every candidate in a srcset is rewritten, not just the first.
+  syndication.absolutize("<source srcset=\"/a.webp 800w, /b.webp 1400w\">")
+  |> should.equal(
+    "<source srcset=\"https://taranat.com/a.webp 800w, https://taranat.com/b.webp 1400w\">",
+  )
+
+  // Text after the attribute is left intact.
+  syndication.absolutize("<a href=\"/x\">a, b</a>")
+  |> should.equal("<a href=\"https://taranat.com/x\">a, b</a>")
 }
 
 pub fn unquote_test() {
