@@ -71,7 +71,7 @@ pub fn feed_xml(posts: List(Post)) -> String {
 fn item(p: Post) -> String {
   let link = layout.site_origin <> "/blog/" <> p.slug
   let description = case p.description {
-    "" -> element.to_string(element.fragment(p.excerpt))
+    "" -> absolutize(element.to_string(element.fragment(p.excerpt)))
     text -> text
   }
 
@@ -92,6 +92,46 @@ fn item(p: Post) -> String {
   <> cdata(description)
   <> "</description>\n"
   <> "    </item>"
+}
+
+/// Feed readers resolve links against their own origin, not the site's, so
+/// site-relative URLs have to be made absolute on the way out. Protocol-
+/// relative URLs already carry a host and are left alone.
+pub fn absolutize(html: String) -> String {
+  use acc, attribute <- list.fold(["href", "src", "srcset"], html)
+  let marker = attribute <> "=\""
+  case string.split(acc, marker) {
+    [before, ..values] ->
+      values
+      |> list.map(absolutize_attribute)
+      |> list.prepend(before)
+      |> string.join(marker)
+    [] -> acc
+  }
+}
+
+/// Everything up to the closing quote is the URL list; the rest is markup
+/// that happens to follow it.
+fn absolutize_attribute(chunk: String) -> String {
+  case string.split_once(chunk, "\"") {
+    Ok(#(value, rest)) -> absolutize_urls(value) <> "\"" <> rest
+    Error(_) -> chunk
+  }
+}
+
+/// srcset holds several comma-separated candidates; every other attribute is
+/// a list of one.
+fn absolutize_urls(value: String) -> String {
+  value
+  |> string.split(",")
+  |> list.map(fn(candidate) {
+    let url = string.trim_start(candidate)
+    case string.starts_with(url, "/") && !string.starts_with(url, "//") {
+      True -> string.replace(candidate, url, layout.site_origin <> url)
+      False -> candidate
+    }
+  })
+  |> string.join(",")
 }
 
 fn xml_escape(text: String) -> String {
