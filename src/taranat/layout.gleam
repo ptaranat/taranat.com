@@ -254,9 +254,17 @@ fn head_element(meta: Meta, assets: String) -> Element(msg) {
           attribute.name("msapplication-config"),
           attribute.content("/browserconfig.xml"),
         ]),
+        // --chrome-bg, the header the browser UI sits against, which is not
+        // the same colour in both schemes.
         html.meta([
           attribute.name("theme-color"),
-          attribute.content("#14110e"),
+          attribute("media", "(prefers-color-scheme: light)"),
+          attribute.content("#181818"),
+        ]),
+        html.meta([
+          attribute.name("theme-color"),
+          attribute("media", "(prefers-color-scheme: dark)"),
+          attribute.content("#0b0b0b"),
         ]),
         html.script([], pre_body_script),
       ],
