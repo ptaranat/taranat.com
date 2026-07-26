@@ -89,6 +89,15 @@ pub fn rfc822_date_test() {
   |> should.equal("Thu, 29 Feb 2024 00:00:00 GMT")
 }
 
+pub fn iso8601_test() {
+  date.iso8601("2026-05-02")
+  |> should.equal("2026-05-02T00:00:00Z")
+
+  // A meta tag is better omitted than filled with something unparseable.
+  date.iso8601("not a date")
+  |> should.equal("")
+}
+
 /// Anything unparseable is passed through untouched rather than guessed at.
 pub fn malformed_date_test() {
   date.long("")

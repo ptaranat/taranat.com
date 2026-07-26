@@ -11,6 +11,7 @@ pub fn view(assets: String) -> Element(Nil) {
       path: "",
       kind: "website",
       image: layout.default_og_image,
+      published: "",
     ),
     assets,
     [
