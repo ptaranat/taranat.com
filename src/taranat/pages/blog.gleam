@@ -2,6 +2,7 @@ import gleam/list
 import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 import lustre/element/html
+import taranat/date
 import taranat/layout
 import taranat/post.{type Post}
 
@@ -54,7 +55,7 @@ fn entry(p: Post) -> Element(Nil) {
   html.li([attribute.class("post-index__entry")], [
     html.time(
       [attribute.class("post-index__date"), attribute("datetime", p.date)],
-      [html.text(post.format_index_date(p.date))],
+      [html.text(date.index(p.date))],
     ),
     html.div([attribute.class("post-index__body")], [
       html.h2([attribute.class("post-index__title")], [
