@@ -1,5 +1,6 @@
 import gleam/int
 import gleam/list
+import gleam/option.{type Option, None, Some}
 import gleam/string
 import lustre/attribute
 import lustre/element.{type Element}
@@ -56,6 +57,41 @@ pub fn responsive_image(image: Image) -> Element(msg) {
       attribute.attribute("loading", loading_value(image.loading)),
     ]),
   ])
+}
+
+/// Post content, where the only variant is a `.webp` beside the original and
+/// remote images cannot be measured at all.
+pub fn content_image(
+  src src: String,
+  webp webp: Option(String),
+  alt alt: String,
+  size size: Option(#(Int, Int)),
+) -> Element(msg) {
+  let sources = case webp {
+    Some(path) -> [
+      html.source([attribute.type_("image/webp"), attribute.srcset(path)]),
+    ]
+    None -> []
+  }
+
+  let dimensions = case size {
+    Some(#(width, height)) -> [
+      attribute.attribute("width", int.to_string(width)),
+      attribute.attribute("height", int.to_string(height)),
+    ]
+    None -> []
+  }
+
+  let image =
+    html.img([
+      attribute.src(src),
+      attribute.alt(alt),
+      attribute.attribute("loading", "lazy"),
+      attribute.attribute("decoding", "async"),
+      ..dimensions
+    ])
+
+  html.picture([], list.append(sources, [image]))
 }
 
 fn loading_value(loading: Loading) -> String {
