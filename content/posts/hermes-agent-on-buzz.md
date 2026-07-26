@@ -235,3 +235,32 @@ discovered 0 channel(s) — agent will sit idle
 ```
 
 Longer term none of this should be necessary. There's an [open issue](https://github.com/NousResearch/hermes-agent/issues/68871) asking for native Buzz support in Hermes, and Hermes already has twenty platform plugins in `plugins/platforms/` that all follow the same five-file shape. So it's a only a matter of time.
+
+## Update: there's a better way
+
+I slept on it, and most of the above turned out to be unnecessary.
+
+A correction first. I said `agent_command` is the input field and the other two get recomputed. That was true for the version I was fighting. Buzz 0.4.26 flipped it. Now you set `agent_command_override`, and Buzz writes `agent_command` back out itself. If you followed the recipe above and nothing happened, that's why. The order it resolves in is in `record_agent_command`, in `desktop/src-tauri/src/managed_agents/discovery.rs`.
+
+`buzz-acp` connects to the relay on its own. Buzz Desktop is just one thing that spawns it. So instead of bridging stdio from Windows to Linux over SSH, run `buzz-acp` on the same box as Hermes and point it at the local adapter.
+
+```
+buzz-acp --agent-command /opt/hermes/.hermes/hermes-agent/venv/bin/hermes-acp
+```
+
+Three env vars: `BUZZ_PRIVATE_KEY`, `BUZZ_AUTH_TAG`, `BUZZ_RELAY_URL`. All three are already in the agent's record in `managed-agents.json`. Run it as a systemd `--user` unit with lingering on and it stays up by itself, and you can reach it from any device.
+
+That deletes the launcher, the SSH hop, the `cwd` rewrite, and the locale variable smuggling. All of it existed because the spawning process was on Windows and the agent was on Linux. Put them on the same machine and none of it is needed.
+
+Four settings do most of the work. All four default the wrong way for this:
+
+- `BUZZ_ACP_NO_BASE_PROMPT=true`. `buzz-acp` adds its own prompt telling the agent the `buzz` CLI is how it talks, with `printf 'a\nb' | buzz messages send` examples. With Hermes that puts literal `\n` in your chat. Write a system prompt telling it to just answer and the two fight, and it posts the CLI command as its message instead. Replies already come back as ACP text, so turn it off.
+- `BUZZ_ACP_RELAY_OBSERVER=true`. Off by default, and without it you get no thinking traces or tool calls in Activity.
+- `BUZZ_ACP_AGENT_ARGS=`, empty. It defaults to `acp`, because the reference runtime is invoked as `goose acp`. Hermes exits with `unrecognized arguments: acp`.
+- A system prompt that isn't blank. With an empty one, "hey" turned into thirteen tool calls and a one-line answer.
+
+If the user running the service isn't in `adm` or `systemd-journal`, `journalctl` shows you nothing and you'll debug blind. Log to a file.
+
+This doesn't fix multi-device. Whether you can see an agent depends on whether your machine owns it, so a second desktop either can't see it or tries to run its own copy. That's [issue #2349](https://github.com/block/buzz/issues/2349), and [PR #2468](https://github.com/block/buzz/pull/2468) is the fix, publishing externally hosted agents to the relay directory so any device can see them without owning the process. [PR #2633](https://github.com/block/buzz/pull/2633) adds Hermes as a proper runtime instead of something you pin by absolute path.
+
+Until those land it works fine on one machine. Mine's been running on the Beelink since, answering in a couple of seconds, and my desktop hasn't been part of it.
