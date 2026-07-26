@@ -16,6 +16,7 @@ pub fn view(assets: String, shelves: List(Shelf)) -> Element(Nil) {
       path: "/",
       kind: "website",
       image: layout.default_og_image,
+      published: "",
     ),
     assets,
     [hero(), shelf_section(shelves), contact()],

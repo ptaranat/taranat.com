@@ -12,6 +12,7 @@ pub fn view(assets: String) -> Element(Nil) {
       path: "/about",
       kind: "website",
       image: layout.default_og_image,
+      published: "",
     ),
     assets,
     [hero(), bookstore(), colophon(), elsewhere()],
