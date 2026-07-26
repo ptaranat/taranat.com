@@ -78,12 +78,14 @@
   z-index: 5;
 }
 
+/* Aligned under the toggle that opened them, rather than across the screen
+   from it. */
 .site-nav ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  align-items: flex-start;
+  align-items: flex-end;
   font-size: var(--fs-small);
 }
 
