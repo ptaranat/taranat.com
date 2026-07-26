@@ -4,7 +4,7 @@ date: 2026-05-02
 description: "People who ride every day can't draw a bicycle from memory. On the illusion of explanatory depth, and why senior engineers flub junior interview questions."
 ---
 
-![Gianluca Gimini, Velocipedia (2016)](https://www.gianlucagimini.it/wp-content/uploads/2019/11/Gianluca-Gimini-Velocipedia-002-Anna.jpg)
+![Gianluca Gimini, Velocipedia (2016)](/assets/velocipedia-anna.jpg)
 *Gianluca Gimini, [Velocipedia](https://www.gianlucagimini.it/portfolio-item/velocipedia/) (2016)*
 
 In 2009 an Italian designer named Gianluca Gimini started asking people to draw a bicycle from memory. He kept doing it for years, collecting hundreds of drawings. Most of them were wrong. People would put the chain on the front wheel, or connect the handlebars directly to the rear axle, or draw frames that were physically impossible to ride. These were people who had seen and ridden bicycles their entire lives. Some of them biked to work. They could recognize a bicycle instantly, pick their own bike out of a rack of fifty, tell you the difference between a road bike and a mountain bike. They just couldn't reconstruct one from the parts up.
