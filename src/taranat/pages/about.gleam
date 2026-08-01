@@ -29,13 +29,13 @@ fn hero() -> Element(Nil) {
       html.div([attribute.class("about-lead")], [
         html.figure([attribute.class("about-hero__photo")], [
           ui.responsive_image(ui.Image(
-            base: "/assets/panat-watercolor",
-            widths: [400, 736],
+            base: "/assets/panat-profile",
+            widths: [200, 400],
             format: "jpg",
             sizes: "26rem",
-            alt: "Watercolor portrait of Panat Taranat",
-            width: 736,
-            height: 736,
+            alt: "Portrait of Panat Taranat",
+            width: 400,
+            height: 400,
             loading: ui.Eager,
           )),
         ]),

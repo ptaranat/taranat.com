@@ -89,6 +89,9 @@ const pre_body_script = "
 })();
 "
 
+/// Opening and closing is left to the native details element. Intercepting the
+/// summary and driving the open attribute by hand desynchronises from Safari's
+/// own toggle, which leaves the panel stuck open on iOS.
 const nav_script = "(function(){
   var d = document.currentScript.previousElementSibling;
   var summary = d.querySelector('.site-nav-toggle');
@@ -97,15 +100,12 @@ const nav_script = "(function(){
   var sync = function(){ mq.matches ? d.setAttribute('open','') : close(); };
   sync();
   mq.addEventListener('change', sync);
-  summary.addEventListener('click', function(e){
-    if(mq.matches) return;
-    e.preventDefault();
-    d.open ? close() : d.setAttribute('open','');
-  });
   d.querySelectorAll('.site-nav a').forEach(function(a){
     a.addEventListener('click', function(){ if(!mq.matches) close(); });
   });
-  document.addEventListener('click', function(e){
+  // iOS Safari withholds document-level click for taps on inert elements, so
+  // dismissing on click never fires for most of the page.
+  document.addEventListener('pointerdown', function(e){
     if(!mq.matches && d.open && !d.contains(e.target)) close();
   });
   document.addEventListener('keydown', function(e){
