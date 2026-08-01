@@ -23,13 +23,13 @@ pub fn view(assets: String) -> Element(Nil) {
           html.div([attribute.class("col-span-text vcard")], [
             html.figure([attribute.class("vcard__photo")], [
               ui.responsive_image(ui.Image(
-                base: "/assets/panat-watercolor",
-                widths: [400, 736],
+                base: "/assets/panat-profile",
+                widths: [200, 400],
                 format: "jpg",
                 sizes: "12rem",
-                alt: "Watercolor portrait of " <> vcard.full_name(),
-                width: 736,
-                height: 736,
+                alt: "Portrait of " <> vcard.full_name(),
+                width: 400,
+                height: 400,
                 loading: ui.Eager,
               )),
             ]),

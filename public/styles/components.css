@@ -375,18 +375,6 @@
   max-width: 26rem;
 }
 
-.about-hero__photo img {
-  width: 100%;
-  height: auto;
-  mix-blend-mode: multiply;
-}
-
-@media (prefers-color-scheme: dark) {
-  .about-hero__photo img { mix-blend-mode: normal; }
-}
-
-[data-user-color-scheme='dark'] .about-hero__photo img { mix-blend-mode: normal; }
-[data-user-color-scheme='light'] .about-hero__photo img { mix-blend-mode: multiply; }
 
 @media (min-width: 60rem) {
   .about-lead { grid-column: 2 / span 10; }
@@ -406,7 +394,9 @@
   margin: 2rem 0 0;
 }
 
-.about-figure img {
+.about-figure img,
+.about-hero__photo img,
+.vcard__photo img {
   width: 100%;
   height: auto;
   display: block;
@@ -1194,11 +1184,9 @@ h2 + .definition {
   max-width: 60%;
 }
 
+/* Rounding the border box carries the mat and the frame around with it. */
 .vcard__photo img {
-  width: 100%;
-  height: auto;
   border-radius: 50%;
-  box-shadow: var(--shadow-card);
 }
 
 .vcard .display {

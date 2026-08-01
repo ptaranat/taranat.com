@@ -325,7 +325,7 @@ pub fn vcard_text_test() {
 
 pub fn vcard_photo_test() {
   let assert Ok(source) =
-    simplifile.read_bits("public/assets/panat-watercolor-400.jpg")
+    simplifile.read_bits("public/assets/panat-profile-400.jpg")
 
   let encoded =
     vcard.text()

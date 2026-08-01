@@ -3,7 +3,7 @@ import gleam/list
 import gleam/string
 import simplifile
 
-const photo_path = "public/assets/panat-watercolor-400.jpg"
+const photo_path = "public/assets/panat-profile-400.jpg"
 
 const crlf = "\r\n"
 
