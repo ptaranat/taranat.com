@@ -52,8 +52,15 @@
   text-transform: uppercase;
 }
 
+/* 2.75rem is the smallest reliable touch target; the negative inline margin
+   keeps the padded box from pushing the toggle off the gutter. */
 .site-nav-toggle {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 2.75rem;
+  padding-inline: 0.5rem;
+  margin-inline: -0.5rem;
   list-style: none;
   cursor: pointer;
   font-size: var(--fs-small);
@@ -94,12 +101,16 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  align-items: flex-end;
+  gap: 0;
+  align-items: stretch;
   font-size: var(--fs-small);
 }
 
+/* Padding rather than gap, so the whole row of the panel is tappable. */
 .site-nav a {
+  display: block;
+  padding-block: 0.85rem;
+  text-align: right;
   text-decoration: none;
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
@@ -139,6 +150,15 @@
     gap: 1.25rem;
     align-items: center;
   }
+  .site-nav a {
+    padding-block: 0;
+    text-align: left;
+  }
+  .site-nav__theme #theme-toggle {
+    min-height: 0;
+    width: auto;
+    text-align: left;
+  }
 }
 
 #theme-toggle {
@@ -153,6 +173,12 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: color 120ms ease;
+}
+
+.site-nav__theme #theme-toggle {
+  min-height: 2.75rem;
+  width: 100%;
+  text-align: right;
 }
 
 #theme-toggle::before { content: 'NIGHT'; }
