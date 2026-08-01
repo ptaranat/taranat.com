@@ -1,11 +1,15 @@
+import gleam/bit_array
 import gleam/list
+import gleam/string
 import gleeunit
 import gleeunit/should
 import mork/document.{type Block, Heading, Text}
+import simplifile
 import taranat/date
 import taranat/image
 import taranat/post
 import taranat/syndication
+import taranat/vcard
 
 pub fn main() {
   gleeunit.main()
@@ -239,4 +243,111 @@ pub fn frontmatter_test() {
 
   post.field(meta, "missing", "fallback")
   |> should.equal("fallback")
+}
+
+fn octets(value: String) -> Int {
+  bit_array.byte_size(bit_array.from_string(value))
+}
+
+pub fn vcard_escape_test() {
+  vcard.escape("Sci-fi, fantasy; and RPGs")
+  |> should.equal("Sci-fi\\, fantasy\\; and RPGs")
+
+  // The backslash is doubled first, so an escape introduced afterwards is not
+  // doubled in turn.
+  vcard.escape("a\\b,c")
+  |> should.equal("a\\\\b\\,c")
+
+  vcard.escape("line one\nline two")
+  |> should.equal("line one\\nline two")
+
+  vcard.escape("nothing to do")
+  |> should.equal("nothing to do")
+}
+
+pub fn vcard_fold_test() {
+  vcard.fold("short")
+  |> should.equal(["short"])
+
+  let folded = vcard.fold(string.repeat("a", 200))
+  list.map(folded, octets)
+  |> should.equal([75, 75, 52])
+
+  // Continuation lines carry a leading space the parser strips back out.
+  folded
+  |> list.drop(1)
+  |> list.all(string.starts_with(_, " "))
+  |> should.be_true
+
+  string.concat(list.map(folded, string.replace(_, " ", "")))
+  |> should.equal(string.repeat("a", 200))
+}
+
+/// The limit is octets, so counting characters overruns it on anything that is
+/// not ASCII.
+pub fn vcard_fold_multibyte_test() {
+  let folded = vcard.fold(string.repeat("\u{00E9}", 120))
+
+  list.map(folded, octets)
+  |> list.all(fn(size) { size <= 75 })
+  |> should.be_true
+
+  string.concat(list.map(folded, string.replace(_, " ", "")))
+  |> should.equal(string.repeat("\u{00E9}", 120))
+}
+
+pub fn vcard_text_test() {
+  let text = vcard.text()
+  let lines = string.split(text, "\r\n")
+
+  // Bare newlines would break parsers that split on CRLF.
+  string.replace(text, "\r\n", "")
+  |> string.contains("\n")
+  |> should.be_false
+
+  list.map(lines, octets)
+  |> list.all(fn(size) { size <= 75 })
+  |> should.be_true
+
+  list.first(lines)
+  |> should.equal(Ok("BEGIN:VCARD"))
+
+  string.ends_with(text, "END:VCARD\r\n")
+  |> should.be_true
+
+  // N: is family-first and must stay in step with FN:.
+  list.contains(lines, "N:Taranat;Panat;;;")
+  |> should.be_true
+
+  list.contains(lines, "FN:" <> vcard.full_name())
+  |> should.be_true
+}
+
+pub fn vcard_photo_test() {
+  let assert Ok(source) =
+    simplifile.read_bits("public/assets/panat-watercolor-400.jpg")
+
+  let encoded =
+    vcard.text()
+    |> string.split("\r\n")
+    |> unfold
+    |> list.filter_map(fn(line) {
+      case string.split_once(line, "PHOTO;ENCODING=b;TYPE=JPEG:") {
+        Ok(#("", data)) -> Ok(data)
+        _ -> Error(Nil)
+      }
+    })
+    |> list.first
+
+  encoded
+  |> should.equal(Ok(bit_array.base64_encode(source, True)))
+}
+
+/// Rejoins continuation lines onto the line they were split from.
+fn unfold(lines: List(String)) -> List(String) {
+  use acc, line <- list.fold(lines, [])
+  case string.starts_with(line, " "), acc {
+    True, [previous, ..rest] -> [previous <> string.drop_start(line, 1), ..rest]
+    _, _ -> [line, ..acc]
+  }
 }

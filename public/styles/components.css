@@ -1151,3 +1151,65 @@ h2 + .definition {
     z-index: 1;
   }
 }
+
+/* Contact card ----------------------------------------------------------- */
+
+.vcard {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.vcard__photo {
+  margin: 0;
+  width: 12rem;
+  max-width: 60%;
+}
+
+.vcard__photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: var(--shadow-card);
+}
+
+.vcard .display {
+  margin-block: 0;
+}
+
+.vcard__role {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+.vcard__save {
+  display: block;
+  width: min(20rem, 100%);
+  margin-block-start: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  text-decoration: none;
+  text-align: center;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.vcard__save:hover,
+.vcard__save:focus-visible {
+  background-color: var(--accent-hover);
+}
+
+.vcard__links {
+  align-self: center;
+  align-items: center;
+  gap: 0.5rem;
+}
