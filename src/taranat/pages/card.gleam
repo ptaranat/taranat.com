@@ -63,6 +63,18 @@ pub fn view(assets: String) -> Element(Nil) {
                 ),
               ]),
               html.li([], [
+                html.a(
+                  [attribute.href(vcard.twitter), attribute.rel("noreferrer")],
+                  [html.text("x.com/ptaranat")],
+                ),
+              ]),
+              html.li([], [
+                html.a(
+                  [attribute.href(vcard.linkedin), attribute.rel("noreferrer")],
+                  [html.text("linkedin.com/in/taranat")],
+                ),
+              ]),
+              html.li([], [
                 html.a([attribute.href("/about")], [html.text("About me")]),
               ]),
             ]),

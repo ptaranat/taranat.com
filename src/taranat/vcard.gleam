@@ -21,6 +21,10 @@ pub const email = "panat@taranat.com"
 
 pub const url = "https://taranat.com"
 
+pub const twitter = "https://x.com/ptaranat"
+
+pub const linkedin = "https://www.linkedin.com/in/taranat"
+
 const note = "Software engineer. Sci-fi and fantasy bookstore in Jersey City."
 
 pub const filename = "panat-taranat.vcf"
@@ -40,6 +44,10 @@ pub fn text() -> String {
       "TITLE:" <> escape(title),
       "EMAIL;TYPE=INTERNET;TYPE=PREF:" <> email,
       "URL:" <> url,
+      // Apple extension; iOS and macOS Contacts show these as social
+      // profiles, other clients ignore the lines.
+      "X-SOCIALPROFILE;TYPE=twitter:" <> twitter,
+      "X-SOCIALPROFILE;TYPE=linkedin:" <> linkedin,
       "NOTE:" <> escape(note),
     ],
     photo_line(),
