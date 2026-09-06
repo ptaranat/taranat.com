@@ -4,11 +4,13 @@ date: 2025-08-12
 description: "From a red toy robot and The Little Prince to Blindsight and AI-generated art, an essay on consciousness and the compulsion to make things."
 ---
 
+![A sketch of a red tin toy robot](/assets/red-tin-robot.jpg)
+
 My earliest memory as a child was walking home in the evening with my mom, through a street market. I was four years old, wearing a t-shirt and shorts. My shoes didn't fit well and I was tired. I had become fixated on a toy robot a vendor was selling: a battery-operated red robot with dials and lights. I remember distinctly thinking: this robot is not alive, but I am.
 
 That was the moment I became conscious of being conscious. The robot could blink, whir, and turn its head, all the outward signs of life, but it wasn't there inside. I was. That realization was unsettling. For weeks afterward, I obsessively drew that red robot, trying to capture it on paper. I didn't understand why, but making those drawings felt like proof that I existed.
 
-When I was six, a librarian who'd been quietly tracking my reading habits pulled me aside. She told me she had something special for me, a book she thought I was ready for. She pulled out _The Little Prince_ and I was entranced by the illustration of the child on the planet. I read it in one sitting and immediately knew this was my favorite book. At that age, I couldn't articulate why. I only knew that its strange blend of whimsy and melancholy felt like it was speaking directly to me.
+When I was six, a librarian pulled me aside and said she had a book for me. She pulled out _The Little Prince_ and I was entranced by the illustration of the child on the planet. I read it in one sitting and immediately knew this was my favorite book. At that age, I couldn't articulate why. I only knew that its strange blend of whimsy and melancholy felt like it was speaking directly to me.
 
 Over the years, I've returned to it again and again, often after major life events. As a child, I was the prince, wandering and curious. As I got older, I felt like the fox, craving connection but wary of others. Most recently, I've caught glimpses of myself in the narrator: aware of the absurdity of adulthood, yet still searching for something beyond the visible.
 
