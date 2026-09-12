@@ -4,6 +4,13 @@ title = "Monthly book club"
 # isbn picks the cover, url picks where to buy. They can differ.
 
 [[book]]
+title = "Harbour of Hungry Ghosts"
+author = "Eliza Chan"
+url = "https://www.dungeonbooks.com/product/harbour-of-hungry-ghosts-chronicles-of-the-yiugwai-hunters-1-by-eliza-chan-paperback-/76IN4SA2PAKGRNSEQFLMLXOI"
+isbn = "9780316589710"
+month = "Sep 2026"
+
+[[book]]
 title = "The Last Contract of Isako"
 author = "Fonda Lee"
 url = "https://www.dungeonbooks.com/product/the-last-contract-of-isako-by-fonda-lee-paperback-/GB5UWQBUBNLLCSREFBVH3636"
