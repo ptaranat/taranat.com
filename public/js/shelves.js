@@ -76,7 +76,12 @@ for (const viewport of document.querySelectorAll('.shelf__viewport')) {
     row.classList.remove('is-dragging');
   };
   row.addEventListener('pointerup', end);
-  row.addEventListener('pointercancel', end);
+  // A cancelled drag gets no closing click to clear the flag, which would
+  // then swallow the next real click on a book.
+  row.addEventListener('pointercancel', () => {
+    end();
+    dragged = false;
+  });
   // A press that leaves before it becomes a drag is never captured, so its
   // pointerup lands elsewhere. Forget it here instead.
   row.addEventListener('pointerleave', (e) => {
@@ -95,6 +100,9 @@ for (const viewport of document.querySelectorAll('.shelf__viewport')) {
     true,
   );
 
-  // Links and covers are natively draggable; that would hijack the drag.
-  row.addEventListener('dragstart', (e) => e.preventDefault());
+  // Links and covers are natively draggable; that would hijack the drag. A
+  // shelf that cannot scroll has no drag of its own, so it keeps the native one.
+  row.addEventListener('dragstart', (e) => {
+    if (viewport.classList.contains('is-scrollable')) e.preventDefault();
+  });
 }

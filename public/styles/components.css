@@ -521,13 +521,13 @@
 }
 
 /* Mouse controls from shelves.js. The arrows sit over the ends of the row and
- * show on hover or keyboard focus; touch swipes instead, so they stay out of
- * the way there. */
+ * show on hover or keyboard focus; touch swipes instead. */
 .shelf__viewport {
   position: relative;
 }
 
-@media (hover: hover) and (pointer: fine) {
+/* any-: a mouse on a touch-first device drags too, so it gets these as well. */
+@media (any-hover: hover) and (any-pointer: fine) {
   .shelf__viewport.is-scrollable .shelf__row {
     cursor: grab;
   }
@@ -588,9 +588,11 @@
   color: var(--accent);
 }
 
-@media (hover: none) {
+/* Nothing here can hover, so the arrows would never show to a finger: let
+ * taps through to the covers, but keep them for a keyboard. */
+@media (any-hover: none) {
   .shelf__arrow {
-    display: none;
+    pointer-events: none;
   }
 }
 
