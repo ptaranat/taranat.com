@@ -520,6 +520,80 @@
   box-shadow: var(--shadow-card-hover);
 }
 
+/* Mouse controls from shelves.js. The arrows sit over the ends of the row and
+ * show on hover or keyboard focus; touch swipes instead, so they stay out of
+ * the way there. */
+.shelf__viewport {
+  position: relative;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shelf__viewport.is-scrollable .shelf__row {
+    cursor: grab;
+  }
+
+  .shelf__row.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    user-select: none;
+  }
+
+  .shelf__row.is-dragging a {
+    cursor: grabbing;
+  }
+}
+
+.shelf__arrow {
+  position: absolute;
+  /* Centred on the covers (2:3 at 6.5rem wide), not on covers plus captions. */
+  top: calc(6.5rem * 1.5 / 2);
+  transform: translateY(-50%);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: 1px solid var(--frame);
+  border-radius: 50%;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.shelf__arrow[hidden] {
+  display: none;
+}
+
+.shelf__arrow--prev {
+  left: 0.25rem;
+}
+
+.shelf__arrow--next {
+  right: 0.25rem;
+}
+
+.shelf__viewport:hover .shelf__arrow,
+.shelf__arrow:focus-visible {
+  opacity: 1;
+}
+
+.shelf__arrow:hover {
+  color: var(--accent);
+}
+
+@media (hover: none) {
+  .shelf__arrow {
+    display: none;
+  }
+}
+
 /* No cached cover: a spine-shaped placeholder keeps the row even. */
 .shelf__blank {
   display: flex;

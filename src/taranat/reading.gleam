@@ -195,8 +195,27 @@ pub fn view(shelves: List(Shelf)) -> Element(Nil) {
 fn shelf_view(s: Shelf) -> Element(Nil) {
   html.div([attribute.class("shelf")], [
     html.h2([attribute.class("shelf__title")], [html.text(s.title)]),
-    html.ul([attribute.class("shelf__row")], list.map(s.books, spine)),
+    html.div([attribute.class("shelf__viewport")], [
+      html.ul([attribute.class("shelf__row")], list.map(s.books, spine)),
+      // Hidden until shelves.js finds the row overflows, so without JS, or on
+      // a short shelf, there is nothing to click that does nothing.
+      arrow("prev", "Scroll shelf back", "\u{2039}"),
+      arrow("next", "Scroll shelf forward", "\u{203A}"),
+    ]),
   ])
+}
+
+fn arrow(dir: String, label: String, glyph: String) -> Element(Nil) {
+  html.button(
+    [
+      attribute.class("shelf__arrow shelf__arrow--" <> dir),
+      attribute.type_("button"),
+      attribute("aria-label", label),
+      attribute("data-dir", dir),
+      attribute("hidden", ""),
+    ],
+    [html.text(glyph)],
+  )
 }
 
 fn spine(b: Book) -> Element(Nil) {
