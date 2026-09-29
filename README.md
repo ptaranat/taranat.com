@@ -21,6 +21,13 @@ code, so the watcher warns rather than emitting stale output.
 `gleam run` does a single build with no watching, and is what the Dockerfile
 uses.
 
+The book club shelves on the home page are not in this repo. They come from the
+Dungeon Books shop API (`api.dungeonbooks.com/v1/books`, whose picks live in
+ssh-bookshop's `bookclub.go`). The Dockerfile fetches it on every build, and a
+build fails while the API is down; run `just shelf` to fetch it locally.
+Without it a local build leaves those shelves out. A new pick reaches the site
+on its next deploy.
+
 ## Structure
 
 ```

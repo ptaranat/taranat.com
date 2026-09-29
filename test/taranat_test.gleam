@@ -8,6 +8,7 @@ import simplifile
 import taranat/date
 import taranat/image
 import taranat/post
+import taranat/reading
 import taranat/syndication
 import taranat/vcard
 
@@ -350,4 +351,37 @@ fn unfold(lines: List(String)) -> List(String) {
     True, [previous, ..rest] -> [previous <> string.drop_start(line, 1), ..rest]
     _, _ -> [line, ..acc]
   }
+}
+
+pub fn book_club_shelves_test() {
+  let source =
+    "{\"books\": [
+      {\"isbn\": \"1\", \"title\": \"Carried\", \"author\": \"A\", \"collection\": \"book club\", \"month\": \"2026-10\", \"product_url\": \"https://www.dungeonbooks.com/product/x/1\"},
+      {\"isbn\": \"9781250406811\", \"title\": \"Gone\", \"author\": \"B\", \"collection\": \"book club\", \"month\": \"2026-03\", \"buy_url\": \"https://bookshop.org/a/108216/9781250406811\"},
+      {\"isbn\": \"3\", \"title\": \"Scary\", \"author\": \"C\", \"collection\": \"horror book club\", \"month\": \"2025-10\"},
+      {\"isbn\": \"4\", \"title\": \"Romance\", \"author\": \"D\", \"collection\": \"fantasy romance\"}
+    ]}"
+
+  let assert [sff, horror] = reading.book_clubs(source)
+  sff.title |> should.equal("Sci-Fi & Fantasy book club")
+  let assert [carried, gone] = sff.books
+  carried.url |> should.equal("https://www.dungeonbooks.com/product/x/1")
+  carried.month |> should.equal("Oct 2026")
+  gone.url |> should.equal("https://bookshop.org/a/108216/9781250406811")
+  // The deluxe is what we sold; the ebook's flat cover is what the row shows.
+  gone.isbn |> should.equal("9781250406828")
+
+  horror.title |> should.equal("Horror book club")
+  let assert [scary] = horror.books
+  scary.url |> should.equal("https://bookshop.org/a/108216/3")
+}
+
+pub fn book_club_shelves_survive_bad_json_test() {
+  reading.book_clubs("<html>502</html>") |> should.equal([])
+}
+
+pub fn month_label_test() {
+  reading.month_label("2024-10") |> should.equal("Oct 2024")
+  reading.month_label("2026-13") |> should.equal("2026-13")
+  reading.month_label("") |> should.equal("")
 }
