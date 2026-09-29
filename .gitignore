@@ -13,3 +13,6 @@ dist
 # responsive variants under public/assets/ ship.
 /originals/
 .playwright-mcp
+
+# Fetched from api.dungeonbooks.com at build; see src/taranat/reading.gleam.
+/content/shelves/book-club.json
