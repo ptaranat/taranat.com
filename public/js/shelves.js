@@ -7,6 +7,9 @@
 // drag never also opens the book it started on.
 
 const DRAG_THRESHOLD = 5;
+// Scroll snap can settle a few pixels short of either end, which would leave
+// an arrow up with nothing left to scroll.
+const EDGE_SLACK = 8;
 
 for (const viewport of document.querySelectorAll('.shelf__viewport')) {
   const row = viewport.querySelector('.shelf__row');
@@ -16,9 +19,18 @@ for (const viewport of document.querySelectorAll('.shelf__viewport')) {
 
   const update = () => {
     const max = row.scrollWidth - row.clientWidth;
-    viewport.classList.toggle('is-scrollable', max > 1);
-    prev.hidden = row.scrollLeft <= 1;
-    next.hidden = row.scrollLeft >= max - 1;
+    viewport.classList.toggle('is-scrollable', max > EDGE_SLACK);
+    const atStart = row.scrollLeft <= EDGE_SLACK;
+    const atEnd = row.scrollLeft >= max - EDGE_SLACK;
+    // Show before hide: hiding the focused arrow would drop keyboard focus to
+    // the page, so it goes to the arrow back the other way, which has to be
+    // visible to take it.
+    if (!atStart) prev.hidden = false;
+    if (!atEnd) next.hidden = false;
+    if (atStart && document.activeElement === prev && !atEnd) next.focus();
+    if (atEnd && document.activeElement === next && !atStart) prev.focus();
+    prev.hidden = atStart;
+    next.hidden = atEnd;
   };
 
   // behavior 'auto' defers to the CSS scroll-behavior, which is smooth only
@@ -43,6 +55,11 @@ for (const viewport of document.querySelectorAll('.shelf__viewport')) {
 
   row.addEventListener('pointermove', (e) => {
     if (!start || e.pointerId !== start.id) return;
+    // Released somewhere we never heard about: this is a hover, not a drag.
+    if ((e.buttons & 1) === 0) {
+      start = null;
+      return;
+    }
     const dx = e.clientX - start.x;
     if (!dragged && Math.abs(dx) < DRAG_THRESHOLD) return;
     if (!dragged) {
@@ -60,6 +77,11 @@ for (const viewport of document.querySelectorAll('.shelf__viewport')) {
   };
   row.addEventListener('pointerup', end);
   row.addEventListener('pointercancel', end);
+  // A press that leaves before it becomes a drag is never captured, so its
+  // pointerup lands elsewhere. Forget it here instead.
+  row.addEventListener('pointerleave', (e) => {
+    if (start && !dragged && e.pointerId === start.id) start = null;
+  });
 
   // The click that ends a drag lands on whatever book is under the pointer.
   row.addEventListener(
