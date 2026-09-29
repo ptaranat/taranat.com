@@ -325,6 +325,7 @@ pub fn render(
       deferred_script("/js/theme.js", assets),
       deferred_script("/js/email.js", assets),
       deferred_script("/js/code-copy.js", assets),
+      deferred_script("/js/shelves.js", assets),
     ]),
   ])
 }
