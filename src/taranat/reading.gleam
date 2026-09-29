@@ -199,8 +199,10 @@ fn shelf_view(s: Shelf) -> Element(Nil) {
       html.ul([attribute.class("shelf__row")], list.map(s.books, spine)),
       // Hidden until shelves.js finds the row overflows, so without JS, or on
       // a short shelf, there is nothing to click that does nothing.
-      arrow("prev", "Scroll shelf back", "\u{2039}"),
-      arrow("next", "Scroll shelf forward", "\u{203A}"),
+      // Named for their shelf, so a screen reader listing buttons can tell
+      // the three pairs apart.
+      arrow("prev", "Scroll " <> s.title <> " back", "\u{2039}"),
+      arrow("next", "Scroll " <> s.title <> " forward", "\u{203A}"),
     ]),
   ])
 }

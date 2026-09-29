@@ -565,6 +565,10 @@
   cursor: pointer;
   opacity: 0;
   transition: opacity 150ms ease;
+  /* Invisible arrows must not catch a finger: on a touch laptop with a mouse
+   * a swipe starting over one would never reach the row. They take the
+   * pointer only while shown; a keyboard needs no pointer events. */
+  pointer-events: none;
 }
 
 .shelf__arrow[hidden] {
@@ -582,18 +586,11 @@
 .shelf__viewport:hover .shelf__arrow,
 .shelf__arrow:focus-visible {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .shelf__arrow:hover {
   color: var(--accent);
-}
-
-/* Nothing here can hover, so the arrows would never show to a finger: let
- * taps through to the covers, but keep them for a keyboard. */
-@media (any-hover: none) {
-  .shelf__arrow {
-    pointer-events: none;
-  }
 }
 
 /* No cached cover: a spine-shaped placeholder keeps the row even. */
