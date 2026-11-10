@@ -86,7 +86,7 @@ fn colophon() -> Element(Nil) {
         ),
         html.p([], [
           html.text(
-            "This site is a small Gleam program that writes HTML files. There is no framework and nothing running on a server. The CSS is hand-written, and the only JavaScript is three short files: the theme toggle, the email link, and the copy buttons on code blocks. The source is on ",
+            "This site is a small Gleam program that writes HTML files. There is no framework and nothing running on a server. The CSS is hand-written, and the only JavaScript is four short files: the theme toggle, the email link, the copy buttons on code blocks, and the arrows on the bookshelves. The source is on ",
           ),
           ext_link("https://github.com/ptaranat/taranat.com", "GitHub"),
           html.text("."),
@@ -194,6 +194,11 @@ fn elsewhere() -> Element(Nil) {
             ),
           ]),
           interest("Music", [
+            ext_link(
+              "https://soundcloud.com/ptaranat",
+              "soundcloud.com/ptaranat",
+            ),
+            html.text(", "),
             ext_link(
               "https://www.last.fm/user/ptaranat",
               "last.fm/user/ptaranat",
