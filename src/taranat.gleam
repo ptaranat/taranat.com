@@ -67,14 +67,18 @@ fn strip_runtime_markers() -> Nil {
 }
 
 pub fn main() {
-  case build() {
+  case build(drafts: False) {
     True -> Nil
     False -> panic as "build failed"
   }
 }
 
-pub fn build() -> Bool {
-  let posts = post.published(post.load_all())
+/// Drafts are only ever built by `gleam dev`, so they never reach a deploy.
+pub fn build(drafts drafts: Bool) -> Bool {
+  let posts = case drafts {
+    True -> post.load_all()
+    False -> post.published(post.load_all())
+  }
   let assets = assets.digest()
   let shelves = reading.load()
 

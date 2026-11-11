@@ -1,3 +1,4 @@
+import gleam/list
 import lustre/attribute.{attribute}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -19,8 +20,119 @@ pub fn view(assets: String, shelves: List(Shelf)) -> Element(Nil) {
       published: "",
     ),
     assets,
-    [hero(), shelf_section(shelves), contact()],
+    [hero(), shelf_section(shelves), projects(), contact()],
   )
+}
+
+type Project {
+  Project(
+    name: String,
+    kind: String,
+    href: String,
+    image: String,
+    alt: String,
+    blurb: String,
+  )
+}
+
+const side_projects = [
+  Project(
+    "Terminal Bookstore",
+    "Dungeon Books",
+    "https://shop.dungeonbooks.com",
+    "ssh-bookshop",
+    "The Dungeon Books shop in a terminal, featuring the book club pick",
+    "ssh shop.dungeonbooks.com opens our book club as a bookstore in your terminal. It takes real orders through Square, and has an API and a CLI so agents can buy books too.",
+  ),
+  Project(
+    "Shop Docs & Policies",
+    "Dungeon Books",
+    "https://docs.dungeonbooks.com",
+    "dungeonbooks-docs",
+    "The Dungeon Books docs home page, listing store, events, orders and Dungeon Club topics",
+    "docs.dungeonbooks.com has everything customers ask us, written down: hours, events, special orders, Dungeon Club memberships and the house rules. Marty reads it too.",
+  ),
+  Project(
+    "Bookstore Discord Bot",
+    "Dungeon Books",
+    "https://github.com/dungeonbooks/marty",
+    "marty",
+    "Marty answering a question about The Dying Earth in Discord, next to his book card for it",
+    "Marty is a burnt-out wizard who used to be a software engineer and now works our Discord. He recommends books, pulls up the details, and tells you where to buy them.",
+  ),
+  Project(
+    "Hermes Memory Plugin",
+    "Personal",
+    "https://hermes-agent.nousresearch.com/marketplace/zeromem",
+    "zeromem",
+    "The zeromem banner: tokenless memory system for Hermes Agent",
+    "zeromem keeps every message word for word in one SQLite file and searches it without calling a model. Written in Rust.",
+  ),
+  Project(
+    "Pocket Hermes",
+    "Personal",
+    "https://github.com/ptaranat/pocket-hermes",
+    "pocket-hermes",
+    "A TrimUI Brick handheld running the Pocket Hermes voice client",
+    "A voice client for my Hermes agent on a TrimUI Brick. C and SDL2 on the device, a small Python relay at home.",
+  ),
+  Project(
+    "Claude Code Remote",
+    "Personal",
+    "https://github.com/ptaranat/pt7",
+    "pt7",
+    "The PT-7 phone key deck in light and dark themes: a talk pad above up, down, tab, escape and enter keys",
+    "PT-7 turns your phone into a key deck: hold the big key to dictate, tap the rest to drive Claude Code from across the room. Runs on Mac, PC or Linux, with no app and no cloud.",
+  ),
+]
+
+fn projects() -> Element(Nil) {
+  html.section([attribute.class("section section--projects")], [
+    html.div([attribute.class("grid")], [
+      html.div([attribute.class("col-span-full")], [
+        html.h2([], [html.text("Projects")]),
+        html.p([attribute.class("projects__lede")], [
+          html.text("Some things I've built, for the shop and for myself."),
+        ]),
+        html.ul(
+          [attribute.class("projects")],
+          side_projects
+            |> list.map(fn(project) {
+              html.li([attribute.class("project")], [
+                html.a(
+                  [
+                    attribute.class("project__link"),
+                    attribute.href(project.href),
+                    attribute.rel("noreferrer"),
+                  ],
+                  [
+                    ui.responsive_image(ui.Image(
+                      base: "/assets/projects/" <> project.image,
+                      widths: [600, 1200],
+                      format: "jpg",
+                      sizes: "(min-width: 60rem) 30rem, (min-width: 40rem) 45vw, 100vw",
+                      alt: project.alt,
+                      width: 1200,
+                      height: 630,
+                      loading: ui.Lazy,
+                    )),
+                    html.span([attribute.class("project__kind")], [
+                      html.text(project.kind),
+                    ]),
+                    html.span([attribute.class("project__name")], [
+                      html.text(project.name),
+                    ]),
+                  ],
+                ),
+                html.p([attribute.class("project__blurb")], [
+                  html.text(project.blurb),
+                ]),
+              ])
+            }),
+        ),
+      ]),
+    ]),
+  ])
 }
 
 fn proof_link(href: String, label: String, text: String) -> Element(Nil) {

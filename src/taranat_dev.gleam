@@ -18,7 +18,7 @@ const port = 3000
 fn serve(port: Int, doc_root: String) -> Result(Nil, String)
 
 pub fn main() {
-  let _ = taranat.build()
+  let _ = taranat.build(drafts: True)
 
   case serve(port, "./dist") {
     Ok(_) ->
@@ -46,7 +46,7 @@ fn watch(content: String, source: String) -> Nil {
   case next_content == content {
     True -> Nil
     False -> {
-      let _ = taranat.build()
+      let _ = taranat.build(drafts: True)
       Nil
     }
   }
